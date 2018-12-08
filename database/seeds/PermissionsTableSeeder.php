@@ -83,35 +83,35 @@ class PermissionsTableSeeder extends Seeder
 
         Permission::create([
             'name'   => 'Navegar Clientes',
-            'slug'   => 'cliente.index',
+            'slug'   => 'clientes.index',
             'description'   => 'Lista y navega todos los clientes del sistema',
 
         ]);
 
         Permission::create([
             'name'   => 'Ver detalle de Clientes',
-            'slug'   => 'cliente.show',
+            'slug'   => 'clientes.show',
             'description'   => 'Ver en detalle cada cliente del sistema',
 
         ]);
 
         Permission::create([
             'name'   => 'Creación de Clientes',
-            'slug'   => 'cliente.create',
+            'slug'   => 'clientes.create',
             'description'   => 'Crea un cliente del sistema',
 
         ]);
 
         Permission::create([
             'name'   => 'Editar Clientes',
-            'slug'   => 'cliente.edit',
+            'slug'   => 'clientes.edit',
             'description'   => 'Edita cualquier cliente',
 
         ]);
 
         Permission::create([
             'name'   => 'Eliminar Clientes',
-            'slug'   => 'cliente.destroy',
+            'slug'   => 'clientes.destroy',
             'description'   => 'Elimina clientes del sistema',
 
         ]);
