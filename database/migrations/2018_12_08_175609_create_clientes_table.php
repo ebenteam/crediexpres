@@ -21,8 +21,6 @@ class CreateClientesTable extends Migration
             $table->string('dir_trabajo');
             $table->string('cel_uno');
             $table->string('cel_dos');
-            $table->integer('creditos_id')->unsigned();
-            $table->foreign('creditos_id')->references('id')->on('creditos')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

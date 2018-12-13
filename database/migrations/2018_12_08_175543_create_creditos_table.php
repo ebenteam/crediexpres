@@ -25,8 +25,8 @@ class CreateCreditosTable extends Migration
             $table->integer('int_actual');
             $table->integer('tot_actual');
             $table->integer('cuo_actual');
-            $table->integer('abonos_id')->unsigned();
-            $table->foreign('abonos_id')->references('id')->on('abonos')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('clientes_id')->unsigned();
+            $table->foreign('clientes_id')->references('id')->on('clientes')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

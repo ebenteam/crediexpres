@@ -17,6 +17,8 @@ class CreateAbonosTable extends Migration
             $table->increments('id');
             $table->integer('cuota');
             $table->integer('tipo_cuota');
+            $table->integer('creditos_id')->unsigned();
+            $table->foreign('creditos_id')->references('id')->on('creditos')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
