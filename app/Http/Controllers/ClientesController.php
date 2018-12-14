@@ -26,7 +26,7 @@ class ClientesController extends Controller
      */
     public function create()
     {
-        //
+        return view('clientes.create');
     }
 
     /**
@@ -37,7 +37,11 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $clientes = Clientes::create($request->all());
+
+        return redirect()->route('clientes.edit', $clientes->id)
+        ->whith('info', 'Cliente guardado con éxito');
+
     }
 
     /**
@@ -48,7 +52,7 @@ class ClientesController extends Controller
      */
     public function show(Clientes $clientes)
     {
-        //
+        return view('clientes.show', compact('clientes'));
     }
 
     /**
@@ -59,7 +63,7 @@ class ClientesController extends Controller
      */
     public function edit(Clientes $clientes)
     {
-        //
+        return view('clientes.edit', compact('clientes'));
     }
 
     /**
@@ -71,7 +75,10 @@ class ClientesController extends Controller
      */
     public function update(Request $request, Clientes $clientes)
     {
-        //
+       $clientes->update($request->all());
+
+       return redirect()->route('clientes.edit', $clientes->id)
+       ->whith('info', 'Cliente guardado con éxito');
     }
 
     /**
@@ -82,6 +89,8 @@ class ClientesController extends Controller
      */
     public function destroy(Clientes $clientes)
     {
-        //
+        $clientes->delete();
+
+        return back()->with('info','Eliminado correctamente'); 
     }
 }

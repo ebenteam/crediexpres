@@ -8,7 +8,7 @@
         Clientes
         <small>Aqui pudes Ingresar Nuevos Clientes</small><td>
            @can ('clientes.index')
-          <button type="button" onclick="location.href='{{ route('clientes.index') }}'" class="btn bg-navy margin"><i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>Nuevo Cliente</button>
+          <a class="btn btn-warning" href="{{ route('clientes.index')}}"><i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>Nuevo Cliente</a>
           @endcan
           </td>
       </h1>
@@ -34,7 +34,7 @@
                  
                   <th>Nombres</th>
                   <th>Apellidos</th>
-                  <th>Celular</th>
+                  <th>Opciones</th>
                   
                 </tr>
                 </thead>
@@ -44,7 +44,20 @@
                 <tr>
                   <td>{{ $cliente->nombres }}</td>
                   <td>{{ $cliente->apellidos }}</td>
-                  <td>{{ $cliente->cel_uno }}</td>
+
+                  <td>
+                  @can ('clientes.show')
+                  <a class="btn btn-success btn-flat" href="{{ route('clientes.show',$cliente->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>  
+                  @endcan
+                  @can ('clientes.edit')
+                  <a class="btn btn-warning btn-flat" href="{{ route('clientes.edit',$cliente->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>    
+                  @endcan
+                  @can ('clientes.destroy')
+                  {!! Form::open(['route'=>['clientes.destroy', $cliente->id ], 'method' => 'DELETE' ]) !!} 
+                  <a class="btn btn-danger btn-flat" href="{{ route('clientes.destroy',$cliente->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>
+                   {!! Form::close() !!}    
+                  @endcan
+                  </td>
                   
                 </tr>
 
