@@ -196,7 +196,7 @@
                     <button type="button" class="btn bg-maroon btn-flat margin" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
-                        {{ __('Salir de Abraham') }}
+                        {{ __('Salir de Crediexpre$') }}
                     </button>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -256,14 +256,25 @@
   <li class="active"><a href="{{ route('clientes.index') }}"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
   @endcan
 
-  @can ('users.index')
-  <li><a href="{{ route('users.index') }}"><i class="fa fa-link"></i> <span>Usuarios</span></a></li>
-  @endcan
+  <li class="treeview">
+         
+          <a>
+            <i class="fa fa-dashboard"></i> <span>Usuarios Sistema</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+         
+          <ul class="treeview-menu" style="display: ;">
+             @can ('users.index')
+            <li><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i>Usuarios</a></li>
+             @endcan
 
-   @can ('roles.index')
-  <li class="active"><a href="{{ route('roles.index') }}"><i class="fa fa-link"></i> <span>Roles</span></a></li>
-  @endcan
-
+             @can ('roles.index')
+            <li><a href="{{ route('roles.index') }}"><i class="fa fa-circle-o"></i>Roles</a></li>
+             @endcan
+          </ul>
+        </li>
 
 </ul>
 <!-- /.sidebar-menu -->
@@ -272,7 +283,7 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <!-- Content Wrapper. Contains page content -->
+
 
 @yield('content')
 
