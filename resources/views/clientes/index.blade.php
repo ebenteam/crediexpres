@@ -7,16 +7,16 @@
       <h1>
         Clientes
         <small>Aqui pudes Ingresar Nuevos Clientes</small><td>
-           @can ('clientes.index')
-          <a class="btn btn-warning" href="{{ route('clientes.index')}}"><i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>Nuevo Cliente</a>
+           @can ('clientes.create')
+          <a class="btn btn-warning" href="{{ route('clientes.create')}}"><i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>Nuevo Cliente</a>
           @endcan
           </td>
       </h1>
-      @if (session('successMsg'))
+      @if (session('info'))
       <div class="alert alert-success alert-dismissible">
              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
              <h4><i class="icon fa fa-check"></i> Correcto!</h4>
-             <strong>{{ session('successMsg') }}</strong>
+             <strong>{{ session('info') }}</strong>
            </div>
       @endif
     </section>
@@ -36,6 +36,7 @@
                   <th>Apellidos</th>
                   <th>Opciones</th>
                   
+                  
                 </tr>
                 </thead>
                 <tbody>
@@ -52,11 +53,14 @@
                   @can ('clientes.edit')
                   <a class="btn btn-warning btn-flat" href="{{ route('clientes.edit',$cliente->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>    
                   @endcan
+
                   @can ('clientes.destroy')
-                  {!! Form::open(['route'=>['clientes.destroy', $cliente->id ], 'method' => 'DELETE' ]) !!} 
-                  <a class="btn btn-danger btn-flat" href="{{ route('clientes.destroy',$cliente->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>
+                  {!! Form::open(['route' => ['clientes.destroy', $cliente->id ],
+                  'method' => 'DELETE']) !!} 
+                  <button class="btn btn-danger btn-flat"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></button>
                    {!! Form::close() !!}    
                   @endcan
+                  
                   </td>
                   
                 </tr>

@@ -56,16 +56,16 @@ Route::middleware(['auth'])->group(function() {
     Route::get('clientes/create', 'ClientesController@create')->name('clientes.create')
     ->middleware('permission:clientes.create');
 
-    Route::put('clientes/{role}', 'ClientesController@update')->name('clientes.update')
+    Route::put('clientes/{clientes}', 'ClientesController@update')->name('clientes.update')
     ->middleware('permission:clientes.edit');
 
-    Route::get('clientes/{role}', 'ClientesController@show')->name('clientes.show')
+    Route::get('clientes/{clientes}', 'ClientesController@show')->name('clientes.show')
     ->middleware('permission:clientes.show');
 
-    Route::delete('clientes/{role}', 'ClientesController@destroy')->name('clientes.destroy')
+    Route::delete('clientes/{clientes}', 'ClientesController@destroy')->name('clientes.destroy')
     ->middleware('permission:clientes.destroy');
 
-    Route::get('clientes/{role}/edit', 'ClientesController@edit')->name('clientes.edit')
+    Route::get('clientes/{clientes}/edit', 'ClientesController@edit')->name('clientes.edit')
     ->middleware('permission:clientes.edit');
 
 

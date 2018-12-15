@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ABRAHAM | Como las Estrellas</title>
+  <title>Crediexpres | Te acerca a lo que quieres</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -43,25 +43,10 @@
   <link rel="stylesheet"
         href="{{asset('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic')}}">
 
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </head>
-<body class="hold-transition skin-yellow sidebar-mini">
+
+
+<body class="hold-transition skin-blue sidebar-mini">
 
   <div class="wrapper">
 
@@ -71,9 +56,9 @@
       <!-- Logo -->
       <a href="index2.html" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>ONE</b></span>
+        <span class="logo-mini"><b>CXP</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Abraham</b>ONE</span>
+        <span class="logo-lg"><b>Crediexpres</b>$</span>
       </a>
 
       <!-- Header Navbar -->
@@ -235,80 +220,54 @@
     <aside class="main-sidebar">
 
       <!-- sidebar: style can be found in sidebar.less -->
+
       <section class="sidebar">
 
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel">
-          <div class="pull-left image">
-            <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
-          </div>
-          <div class="pull-left info">
-            <p>{{ Auth::user()->name }}</p>
-            <!-- Status -->
-            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-          </div>
-        </div>
+<!-- Sidebar user panel (optional) -->
+<div class="user-panel">
+  <div class="pull-left image">
+    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+  </div>
+  <div class="pull-left info">
+    <p>{{ Auth::user()->name }}</p>
+    <!-- Status -->
+    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+  </div>
+</div>
+
+<!-- search form (Optional) -->
+<form action="#" method="get" class="sidebar-form">
+  <div class="input-group">
+    <input type="text" name="q" class="form-control" placeholder="Buscar...">
+    <span class="input-group-btn">
+        <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+        </button>
+      </span>
+  </div>
+</form>
+<!-- /.search form -->
+
+<!-- Sidebar Menu -->
+<ul class="sidebar-menu" data-widget="tree">
+  <li class="header">HEADER</li>
+  <!-- Optionally, you can add icons to the links -->
+
+  @can ('clientes.index')
+  <li class="active"><a href="{{ route('clientes.index') }}"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
+  @endcan
+
+  @can ('users.index')
+  <li><a href="{{ route('users.index') }}"><i class="fa fa-link"></i> <span>Usuarios</span></a></li>
+  @endcan
+
+   @can ('roles.index')
+  <li class="active"><a href="{{ route('roles.index') }}"><i class="fa fa-link"></i> <span>Roles</span></a></li>
+  @endcan
 
 
-
-        <!-- Sidebar Menu -->
-        <ul class="sidebar-menu" data-widget="tree">
-          <li class="header">Menu Principal</li>
-          <!-- Optionally, you can add icons to the links -->
-          <li class="treeview">
-         <a href="{{ route('persona_listar') }}">
-           <i class="fa fa-fw fa-users"></i>
-           <span>Personas</span>
-           <span class="pull-right-container">
-             <i class="fa fa-angle-left pull-right"></i>
-           </span>
-         </a>
-         <ul class="treeview-menu">
-           <li><a href="{{ route('persona_insertar') }}"><i class="fa fa-fw fa-user-plus"></i>Nueva Persona</a></li>
-           <li><a href="{{ route('persona_listar') }}"><i class="fa fa-fw fa-tasks"></i>Lista Personas</a></li>
-         </ul>
-       </li>
-
-
-
-
-       <li class="treeview">
-      <a href="{{ route('persona_listar') }}">
-        <i class="fa fa-fw fa-home"></i>
-        <span>Celulas</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li><a href="{{ route('celula_insertar') }}"><i class="fa fa-fw fa-user-plus"></i>Nueva Celula</a></li>
-        <li><a href="{{ route('celula_insertar') }}"><i class="fa fa-fw fa-tasks"></i>Lista Celulas</a></li>
-      </ul>
-    </li>
-
-
-
-
-
-       <li class="treeview">
-      <a href="{{ route('persona_listar') }}">
-        <i class="fa fa-fw fa-cogs"></i>
-        <span>Consolidación</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li><a href="{{ route('consolida_listar') }}"><i class="fa fa-fw fa-check-square-o"></i>Asignación</a></li>
-        <li><a href="{{ route('consolida_listar') }}"><i class="fa fa-fw fa-calendar-check-o"></i>Reasignación</a></li>
-      </ul>
-        </ul>
-        <!-- /.sidebar-menu -->
-
-
-
-
-      </section>
+</ul>
+<!-- /.sidebar-menu -->
+</section>
       <!-- /.sidebar -->
     </aside>
 
@@ -319,13 +278,13 @@
 
 
 <footer class="main-footer">
-  <!-- To the right -->
-  <div class="pull-right hidden-xs">
-    Como Las Estrellas
-  </div>
-  <!-- Default to the left -->
-  <strong>Copyright &copy; 2018 <a href="#">Jesucristo es la Solución</a>.</strong> Iglesia Presbiteriana Cumberland.
-</footer>
+      <!-- To the right -->
+      <div class="pull-right hidden-xs">
+      Soluciones efectivas
+      </div>
+      <!-- Default to the left -->
+      <strong>Copyright  &copy;<a href="https://ebenteam.com/">Ebenteam</a>.</strong> 
+    </footer>
 
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">

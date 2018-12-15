@@ -39,8 +39,8 @@ class ClientesController extends Controller
     {
         $clientes = Clientes::create($request->all());
 
-        return redirect()->route('clientes.edit', $clientes->id)
-        ->whith('info', 'Cliente guardado con éxito');
+        return redirect()->route('clientes.index')
+        ->with('info', 'Cliente Nuevo creado con éxito');
 
     }
 
@@ -77,8 +77,8 @@ class ClientesController extends Controller
     {
        $clientes->update($request->all());
 
-       return redirect()->route('clientes.edit', $clientes->id)
-       ->whith('info', 'Cliente guardado con éxito');
+       return redirect()->route('clientes.index')
+       ->with('info', 'Cliente Modificado con éxito');
     }
 
     /**
