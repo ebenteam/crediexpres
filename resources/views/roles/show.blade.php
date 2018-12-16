@@ -6,8 +6,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Detalle del Empleado
-        <small>Informacion detallada del Empleado</small>
+        Detalle Roles
+        <small>Informacion detallada de los roles</small>
       </h1>
       		
     </section>
@@ -21,17 +21,16 @@
 <section class="content">
 
 <div class="form-group">
-<h4 class="text-blue"><i class="glyphicon glyphicon-user"></i> <strong>Id: {{ $users->id }} </strong> </h4>
+<h4 class="text-blue"><i class="glyphicon glyphicon-user"></i> <strong>{{ $role->name }} </strong> </h4>
 </div>
 
 <div class="form-group">
-<h4 class="text-blue"><i class="glyphicon glyphicon-user"></i> <strong>{{ $users->name }} </strong> </h4>
+ <h4 class="text-black"><i class="glyphicon glyphicon-home"></i> {{ $role->slug }} </h4>
 </div>
 
 <div class="form-group">
- <h4 class="text-black"><i class="glyphicon glyphicon-home"></i> {{ $users->email }} </h4>
+ <h4 class="text-blue"><i class="glyphicon glyphicon-equalizer"></i> {{ $role->description }} </h4>
 </div>
-
 
 
 </div>

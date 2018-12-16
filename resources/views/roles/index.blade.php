@@ -4,11 +4,14 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-    <h1>
-        Lista de Empleados
-        <small>lista de empleados para asignar permisos</small>
+      <h1>
+        Permisos
+        <small>Permisos definidos en el Sistema</small><td>
+           @can ('roles.create')
+          <a class="btn btn-warning" href="{{ route('roles.create')}}"><i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>Nuevo Permiso</a>
+          @endcan
+          </td>
       </h1>
-     
       @if (session('info'))
       <div class="alert alert-success alert-dismissible">
              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -29,30 +32,30 @@
                 <thead>
                 <tr>
                  
-                  <th>Nombre</th>
-                  <th>Email</th>
+                  <th>Permiso</th>
+                  <th>Descripción</th>
                   <th>Opciones</th>
                   
                   
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($users as $user)
+                @foreach($roles as $role)
               
                 <tr>
-                  <td>{{ $user->name }}</td>
-                  <td>{{ $user->email }}</td>
+                  <td>{{ $role->name }}</td>
+                  <td>{{ $role->description }}</td>
 
                   <td>
-                  @can ('users.show')
-                  <a class="btn btn-success btn-flat" href="{{ route('users.show',$user->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>  
+                  @can ('roles.show')
+                  <a class="btn btn-success btn-flat" href="{{ route('roles.show',$role->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>  
                   @endcan
-                  @can ('users.edit')
-                  <a class="btn btn-warning btn-flat" href="{{ route('users.edit',$user->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>    
+                  @can ('roles.edit')
+                  <a class="btn btn-warning btn-flat" href="{{ route('roles.edit',$role->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>    
                   @endcan
 
-                  @can ('users.destroy')
-                  {!! Form::open(['route' => ['users.destroy', $user->id ],
+                  @can ('roles.destroy')
+                  {!! Form::open(['route' => ['roles.destroy', $role->id ],
                   'method' => 'DELETE']) !!} 
                   <button class="btn btn-danger btn-flat"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></button>
                    {!! Form::close() !!}    

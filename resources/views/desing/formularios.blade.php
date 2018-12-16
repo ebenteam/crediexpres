@@ -259,7 +259,7 @@
   <li class="treeview">
          
           <a>
-            <i class="fa fa-dashboard"></i> <span>Usuarios Sistema</span>
+            <i class="fa fa-dashboard"></i> <span>Permisos Sistema</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -267,11 +267,11 @@
          
           <ul class="treeview-menu" style="display: ;">
              @can ('users.index')
-            <li><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i>Usuarios</a></li>
+            <li><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i>Empleados</a></li>
              @endcan
 
              @can ('roles.index')
-            <li><a href="{{ route('roles.index') }}"><i class="fa fa-circle-o"></i>Roles</a></li>
+            <li><a href="{{ route('roles.index') }}"><i class="fa fa-circle-o"></i>Permisos</a></li>
              @endcan
           </ul>
         </li>

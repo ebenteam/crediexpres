@@ -39,7 +39,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('roles/{role}', 'RoleController@show')->name('roles.show')
     ->middleware('permission:roles.show');
 
-    Route::delete('roles/{role}', 'RoleController@destroy')->name('roles.destroy')
+    Route::delete('roles/{roles}', 'RoleController@destroy')->name('roles.destroy')
     ->middleware('permission:roles.destroy');
 
     Route::get('roles/{role}/edit', 'RoleController@edit')->name('roles.edit')

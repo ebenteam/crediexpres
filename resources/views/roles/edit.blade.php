@@ -6,8 +6,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Asignar Perfil al Empleado
-        <small>Puedes asignar el perfil de tu empleado</small>
+        Modificar Permisos
+        <small>Modificar los permisos de empleado</small>
       </h1>
       		
     </section>
@@ -20,12 +20,14 @@
 
 <section class="content">
 
-{!! Form::model($users,['route'=> ['users.update', $users->id],
+
+{!! Form::model($role,['route'=> ['roles.update', $role->id],
 'method' => 'PUT']) !!}
 
-@include('users.partials.form')
+@include('roles.partials.form')
 
 {!! Form::close() !!}
+
 </div>
 </div>
 </div>
