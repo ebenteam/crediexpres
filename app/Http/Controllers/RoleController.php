@@ -83,10 +83,10 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-       //actualizacion de usuario
+       //actualizacion de permisos
         $role->update($request->all());
 
-        //actualizar roles sincronisando con losdatos del arreglo en el form
+        //actualizar permisos sincronisando con los datos del arreglo en el form
        $role->permissions()->sync($request->get('permissions')); 
 
        return redirect()->route('roles.index')
