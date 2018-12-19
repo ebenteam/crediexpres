@@ -29,7 +29,7 @@
 {{ Form::text('cel_dos', null, ['class' => 'form-control']) }}
 </div>
 
-<div class="form-group">
+<div class="box-body">
 {{ Form::submit('Guardar', ['class' => 'btn btn-warning']) }}
-</div>
+
 

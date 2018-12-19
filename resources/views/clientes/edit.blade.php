@@ -25,7 +25,16 @@
 
 @include('clientes.partials.form')
 
+@can ('clientes.show')
+<a class="btn btn-success btn-flat" href="{{ route('clientes.show',$clientes->id)}}"><i class="fa fa-fw fa-mail-reply-all" aria-hidden="true"></i>Volver</a>
+@endcan
+
+</div>
+
 {!! Form::close() !!}
+
+
+
 </div>
 </div>
 </div>
