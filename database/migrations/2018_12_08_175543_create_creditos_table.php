@@ -15,6 +15,7 @@ class CreateCreditosTable extends Migration
     {
         Schema::create('creditos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('fecha');
             $table->integer('capital');
             $table->integer('interes');
             $table->integer('total');

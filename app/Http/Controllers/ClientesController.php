@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Clientes;
+
+
 use Illuminate\Http\Request;
 
 class ClientesController extends Controller
@@ -93,4 +95,7 @@ class ClientesController extends Controller
 
         return back()->with('info','Eliminado correctamente'); 
     }
+
+
+
 }

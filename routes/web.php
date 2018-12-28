@@ -84,6 +84,33 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('users/{users}/edit', 'UserController@edit')->name('users.edit')
     ->middleware('permission:users.edit');
+
+
+
+
+    //Creditos
+
+    Route::post('creditos/store', 'CreditosController@store')->name('creditos.store')
+        ->middleware('permission:creditos.create');
+
+    Route::get('creditos/{id}', 'CreditosController@index')->name('creditos.index')
+    ->middleware('permission:creditos.index');
+
+    Route::get('creditos/create/{id}', 'CreditosController@create')->name('creditos.create')
+    ->middleware('permission:creditos.create');
+
+    Route::put('creditos/{creditos}', 'CreditosController@update')->name('creditos.update')
+    ->middleware('permission:creditos.edit');
+
+    Route::get('creditos/{creditos}', 'CreditosController@show')->name('creditos.show')
+    ->middleware('permission:creditos.show');
+
+    Route::delete('creditos/{creditos}', 'CreditosController@destroy')->name('creditos.destroy')
+    ->middleware('permission:creditos.destroy');
+
+    Route::get('creditos/{creditos}/edit', 'CreditosController@edit')->name('creditos.edit')
+    ->middleware('permission:creditos.edit');
+
    
 
 

@@ -27,6 +27,7 @@ class UserController extends Controller
      * @param  \App\User  $users
      * @return \Illuminate\Http\Response
      */
+    
     public function show(User $users)
     {
         return view('users.show', compact('users'));

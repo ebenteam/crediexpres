@@ -31,7 +31,7 @@
         </div>
         <!-- /.widget-user-image -->
         <h3 class="widget-user-username">{{ $clientes->nombres }} {{ $clientes->apellidos }}</h3>
-        <h5 class="widget-user-desc">{{ $clientes->created_at }}</h5>
+        <h5 class="widget-user-desc">Codigo: {{ $clientes->id }} </h5>
       </div>
       <div class="box-footer no-padding">
         <ul class="nav nav-stacked">
@@ -58,14 +58,14 @@
       </div>
       <div class="box-footer no-padding">
         <ul class="nav">
-          @can ('clientes.edit')
-          <li><a class="btn btn-success btn-flat" href="{{ route('clientes.edit',$clientes->id)}}">Consultar Credito<i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a></li>
+          @can ('creditos.index')
+          <li><a class="btn btn-success btn-flat" href="{{ route('creditos.index',$clientes->id)}}">Consultar Creditos<i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a></li>
+          @endcan
+          @can ('creditos.create')
+          <li><a class="btn btn-block btn-primary" href="{{ route('creditos.create',$clientes->id)}}">Crear Credito<i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a></li>
           @endcan
           @can ('clientes.edit')
-          <li><a class="btn btn-success btn-flat" href="{{ route('clientes.edit',$clientes->id)}}">Crear Credito<i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a></li>
-          @endcan
-          @can ('clientes.edit')
-          <li><a class="btn btn-success btn-flat" href="{{ route('clientes.edit',$clientes->id)}}">Modificar Cliente<i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a></li>
+          <li><a class="btn btn-warning btn-flat" href="{{ route('clientes.edit',$clientes->id)}}">Modificar Cliente<i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a></li>
           @endcan
           @can ('clientes.edit')
           <li><a class="btn btn-danger btn-flat" href="{{ route('clientes.edit',$clientes->id)}}">Eliminar Cliente<i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a></li>

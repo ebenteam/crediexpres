@@ -116,5 +116,51 @@ class PermissionsTableSeeder extends Seeder
 
         ]);
 
+
+
+       //Creditos------------------------------------------------------------
+
+       Permission::create([
+        'name'   => 'Navegar Creditos ',
+        'slug'   => 'creditos.index',
+        'description'   => 'Lista y navega todos los creditos del cliente',
+
+    ]);
+
+    Permission::create([
+        'name'   => 'Ver detalle de Creditos',
+        'slug'   => 'creditos.show',
+        'description'   => 'Ver en detalle cada credito',
+
+    ]);
+
+    Permission::create([
+        'name'   => 'Creación de Creditos',
+        'slug'   => 'creditos.create',
+        'description'   => 'Crea un credito al cliente',
+
+    ]);
+
+    Permission::create([
+        'name'   => 'Editar Creditos',
+        'slug'   => 'creditos.edit',
+        'description'   => 'Edita cualquier credito',
+
+    ]);
+
+    Permission::create([
+        'name'   => 'Eliminar Creditos',
+        'slug'   => 'creditos.destroy',
+        'description'   => 'Elimina creditos del sistema',
+
+    ]);
+
+
+
+
+
+
+
+
     }
 }
