@@ -72,12 +72,18 @@
           @endcan
         </ul>
       </div>
+
+          
             <!-- /.description-block -->
           </div>
           <!-- /.col -->
         </div>
         <!-- /.row -->
       </div>
+
+      @can ('clientes.index')
+      <a class="btn btn-success btn-flat" href="{{ route('clientes.index')}}"><i class="fa fa-fw fa-mail-reply-all" aria-hidden="true"></i>Volver</a>
+      @endcan
     </div>
     <!-- /.widget-user -->
   </div>

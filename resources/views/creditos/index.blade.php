@@ -44,7 +44,8 @@
 
                   <td>
                  
-                  <a class="btn btn-success btn-flat" href=""><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>  
+                  <a class="btn btn-success btn-flat" href=""><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a> 
+
                  
                   
                 </tr>
@@ -53,15 +54,34 @@
                </tbody>
                 </tfoot>
               </table>
+              
+
+              
             </div>
+            
+            
             <!-- /.box-body -->
           </div>
+         
           <!-- /.box -->
         </div>
         <!-- /.col -->
       </div>
+      <a class="btn btn-success btn-flat" href="{{ url()->previous() }}"><i class="fa fa-fw fa-mail-reply-all" aria-hidden="true"></i>Volver</a>
       <!-- /.row -->
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

@@ -49,8 +49,9 @@ class CreditosController extends Controller
     public function store(Request $request)
     {
         $creditos = Creditos::create($request->all());
-
-        return redirect()->route('creditos.index')
+        $id = $request->$cliente_id; 
+    
+        return redirect()->route('creditos.index', ['id' => $id])
         ->with('info', 'Credito Nuevo creado con éxito');
 
     }
