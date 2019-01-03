@@ -43,10 +43,11 @@
                   <td>{{ $credito->total }}</td>
 
                   <td>
-                 
-                  <a class="btn btn-success btn-flat" href=""><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a> 
+                  
+                  @can ('abonos.index')
+                  <a class="btn btn-success btn-flat" href="{{ route('abonos.index',$credito->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>  
+                  @endcan
 
-                 
                   
                 </tr>
 

@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Abonos;
+use App\Creditos;
+use App\Clientes;
+use Carbon\Carbon;
+
+
+
 use Illuminate\Http\Request;
 
 class AbonosController extends Controller
@@ -12,19 +18,25 @@ class AbonosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $abonos = Abonos::where('creditos_id', '=', $id)->paginate();
+
+        return view('abonos.index', compact('abonos','creditos'));
+
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear credito viene de show.blade.clientes.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+
+        $now = Carbon::now();
+        $creditos = Creditos::find($id);
+        return view('abonos.create', compact('creditos', 'now'));
     }
 
     /**
@@ -35,41 +47,49 @@ class AbonosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $abonos = Abonos::create($request->all());
+        $id = $request->creditos_id; 
+    
+        return redirect()->route('abonos.index', ['id' => $id])
+        ->with('info', 'Credito Nuevo creado con éxito');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Abonos  $abonos
+     * @param  \App\Abonos  $creditos
      * @return \Illuminate\Http\Response
      */
     public function show(Abonos $abonos)
     {
-        //
+        return view('abonos.show', compact('abonos'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Abonos  $abonos
+     * @param  \App\Abonos  $creditos
      * @return \Illuminate\Http\Response
      */
     public function edit(Abonos $abonos)
     {
-        //
+        return view('abonos.edit', compact('abonos'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Abonos  $abonos
+     * @param  \App\Abonos  $creditos
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Abonos $abonos)
     {
-        //
+       $abonos->update($request->all());
+
+       return redirect()->route('abonos.index')
+       ->with('info', 'Abono Modificado con éxito');
     }
 
     /**
@@ -78,8 +98,13 @@ class AbonosController extends Controller
      * @param  \App\Abonos  $abonos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Abonos $abonos)
+    public function destroy(Abonos $abono)
     {
-        //
+        $abono->delete();
+
+        return back()->with('info','Eliminado correctamente'); 
     }
+
+
+
 }
