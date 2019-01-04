@@ -21,6 +21,8 @@ class AbonosController extends Controller
     public function index($id)
     {
         $abonos = Abonos::where('creditos_id', '=', $id)->paginate();
+        $creditos = Creditos::find($id);
+       
 
         return view('abonos.index', compact('abonos','creditos'));
 

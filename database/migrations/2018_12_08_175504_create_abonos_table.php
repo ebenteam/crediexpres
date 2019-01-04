@@ -15,6 +15,7 @@ class CreateAbonosTable extends Migration
     {
         Schema::create('abonos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('fecha');
             $table->integer('cuota');
             $table->integer('tipo_cuota');
             $table->integer('creditos_id')->unsigned();

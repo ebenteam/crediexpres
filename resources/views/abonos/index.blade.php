@@ -9,6 +9,7 @@
         Abonos
         <small>Informacion detallada del credito y el abono</small>
       </h1>
+              <h3>Credito</h3>
     
     </section>
 
@@ -20,24 +21,29 @@
 
           <div class="box box-solid">
             <div class="box-header with-border">
+        
               <h3 class="box-title">Credito</h3>
-
+          
               <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>
             </div>
+            
             <div class="box-body no-padding">
+
               <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
-                  <span class="label label-primary pull-right">12</span></a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
-                <li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
-                <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span></a>
-                </li>
-                <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
+                <li class="active"><a href="#"><i class="fa fa-fw fa-rocket"></i>Inicio Credito<span class="pull-right badge bg-blue">{{ $creditos->fecha }}</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-money"></i>Capital<span class="pull-right badge bg-aqua">{{ $creditos->capital }}</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-line-chart"></i>Interes<span class="pull-right badge bg-green">{{ $creditos->interes }}</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-usd"></i>Total<span class="pull-right badge bg-yellow">{{ $creditos->total }}</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-calendar-minus-o"></i>Cuotas<span class="pull-right badge bg-red">{{ $creditos->cuotas }}</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-calendar-plus-o"></i>Plazo<span class="pull-right badge bg-green">{{ $creditos->plazo }}</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-table"></i>Frecuencia Pago<span class="pull-right badge bg-blue">{{ $creditos->fre_pago }}</span></a></li>
               </ul>
+            
             </div>
+            
             <!-- /.box-body -->
           </div>
           <!-- /. box -->
@@ -75,9 +81,9 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                 
+
+                  <th>Fecha</th>
                   <th>Cuota</th>
-                  <th>Tipo</th>
                   <th>Opciones</th>
                   
                   
@@ -87,8 +93,9 @@
                 @foreach($abonos as $abono)
               
                 <tr>
+                  <td>{{ $abono->fecha }}</td>
                   <td>{{ $abono->cuota }}</td>
-                  <td>{{ $abono->tipo_cuota }}</td>
+                 
 
                   <td>
                  
