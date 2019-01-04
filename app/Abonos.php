@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Abonos extends Model
 {
     protected $fillable = [
-        'fecha','cuota', 'tipo_cuota', 'creditos_id', 'created_at',
+        'fecha','cuota', 'tipo_cuota', 'creditos_id', 'usuario', 'created_at',
     ];
 }

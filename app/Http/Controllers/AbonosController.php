@@ -22,9 +22,15 @@ class AbonosController extends Controller
     {
         $abonos = Abonos::where('creditos_id', '=', $id)->paginate();
         $creditos = Creditos::find($id);
-       
-
-        return view('abonos.index', compact('abonos','creditos'));
+        /**
+        * se realiza consulta donde se compara el id que llega con el id de creditos 
+        * y selecciono el valor que esta columna clientes_id se asigna a la variable idclientes
+        * despues hacemos la consulta del cliente con find y entregamos la variable idcliente de creditos
+        **/
+        $idcliente = Creditos::where('id', '=', $id)->value('clientes_id');
+        $clientes = Clientes::find($idcliente);
+      
+        return view('abonos.index', compact('abonos','creditos','clientes'));
 
     }
 

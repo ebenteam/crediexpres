@@ -7,9 +7,16 @@
     <section class="content-header">
       <h1>
         Abonos
-        <small>Informacion detallada del credito y el abono</small>
-      </h1>
-              <h3>Credito</h3>
+
+       
+        <small><strong>{{ $clientes->nombres }} {{ $clientes->apellidos }}</strong>/ Información detallada del Credito y el Abono</small>
+        
+      
+      </h1> <br>
+      
+
+
+     
     
     </section>
 
@@ -17,8 +24,9 @@
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <a href="compose.html" class="btn btn-primary btn-block margin-bottom">Nuevo Abono</a>
-
+           @can ('abonos.create')
+          <a href="{{ route('abonos.create',$creditos->id)}}" class="btn btn-primary btn-block margin-bottom">Nuevo Abono</a>
+           @endcan
           <div class="box box-solid">
             <div class="box-header with-border">
         
@@ -58,9 +66,11 @@
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
-                <li><a href="#"><i class="fa fa-circle-o text-red"></i> Important</a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-red"></i>Capital Actual:<span class="pull-right badge bg-red">{{ $creditos->cap_actual }}</span></a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i>Interes Actual:<span class="pull-right badge bg-yellow">{{ $creditos->int_actual }}</span></a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-light-green"></i>Total Actual:<span class="pull-right badge bg-green"> {{ $creditos->tot_actual }}</span></a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i>Cuota Actual:<span class="pull-right badge bg-blue"> {{ $creditos->cuo_actual }}</span></a></li>
+
               </ul>
             </div>
             <!-- /.box-body -->

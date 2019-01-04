@@ -22,6 +22,7 @@ class CreditosController extends Controller
     public function index($id)
     {
         $creditos = Creditos::where('clientes_id', '=', $id)->paginate();
+        $clientes = Clientes::find($id);
 
         return view('creditos.index', compact('creditos','clientes'));
 

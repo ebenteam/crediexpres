@@ -7,7 +7,22 @@
       <h1>
         Creditos
         <small>Aqui puedes consultar Creditos</small>
+
       </h1>
+      <br>
+
+      <div class="info-box">
+            <span class="info-box-icon bg-blue"><i class="fa fa-fw fa-user"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">{{ $clientes->nombres }} {{ $clientes->apellidos }}</span>
+              <span class="info-box-text">{{ $clientes->dir_casa }}</span>
+              <span class="info-box-number">{{ $clientes->cel_uno }}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+
+
       @if (session('info'))
       <div class="alert alert-success alert-dismissible">
              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -45,7 +60,7 @@
                   <td>
                   
                   @can ('abonos.index')
-                  <a class="btn btn-success btn-flat" href="{{ route('abonos.index',$credito->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>  
+                  <a class="btn btn-success btn-flat" href="{{ route('abonos.index',$credito->id) }}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>  
                   @endcan
 
                   
