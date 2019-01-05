@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Clientes;
+use App\Http\Requests\ClientesRequest;
 
 
 use Illuminate\Http\Request;
@@ -16,8 +18,8 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        $clientes = Clientes::paginate();
-
+        $clientes = Clientes::all();
+        
         return view('clientes.index', compact('clientes'));
     }
 
@@ -37,7 +39,7 @@ class ClientesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClientesRequest $request)
     {
         $clientes = Clientes::create($request->all());
 

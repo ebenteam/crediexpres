@@ -20,7 +20,7 @@ class AbonosController extends Controller
      */
     public function index($id)
     {
-        $abonos = Abonos::where('creditos_id', '=', $id)->paginate();
+        $abonos = Abonos::where('creditos_id', '=', $id)->get();
         $creditos = Creditos::find($id);
         /**
         * se realiza consulta donde se compara el id que llega con el id de creditos 
