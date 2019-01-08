@@ -67,9 +67,7 @@
           @can ('clientes.edit')
           <li><a class="btn btn-warning btn-flat" href="{{ route('clientes.edit',$clientes->id)}}">Modificar Cliente<i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a></li>
           @endcan
-          @can ('clientes.edit')
-          <li><a class="btn btn-danger btn-flat" href="{{ route('clientes.edit',$clientes->id)}}">Eliminar Cliente<i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a></li>
-          @endcan
+         
         </ul>
       </div>
 

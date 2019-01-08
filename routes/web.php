@@ -126,7 +126,7 @@ Route::middleware(['auth'])->group(function() {
     Route::put('abonos/{abonos}', 'AbonosController@update')->name('abonos.update')
     ->middleware('permission:abonos.edit');
 
-    Route::get('abonos/{abonos}', 'AbonosController@show')->name('abonos.show')
+    Route::get('abonos/show/{abonos}', 'AbonosController@show')->name('abonos.show')
     ->middleware('permission:abonos.show');
 
     Route::delete('abonos/{abonos}', 'AbonosController@destroy')->name('abonos.destroy')

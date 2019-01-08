@@ -51,10 +51,6 @@
                   <a class="btn btn-success btn-flat" href="{{ route('clientes.show',$cliente->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>  
                   @endcan
 
-
-                  <!-- opcion de modificar y eliminar ocultas
-
-
                   @can ('clientes.edit')
                   <a class="btn btn-warning btn-flat" href="{{ route('clientes.edit',$cliente->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>    
                   @endcan
@@ -69,7 +65,7 @@
                   </td>
 
 
-                  -->
+                 
                   
                 </tr>
 

@@ -1,13 +1,10 @@
-
-
-
 <div class="form-group">
 <label>Fecha:</label>
 <div class="input-group date">
 <div class="input-group-addon">
 <i class="fa fa-calendar"></i>
 </div>
-<input type="text" class="form-control pull-right" id="datepicker" name="fecha" value="{{ $now->format('Y-m-d') }}"/>
+<input type="text" class="form-control pull-right" id="datepicker" name="fecha" value="{{ $abonos->fecha }}"/>
 </div>
 
 </div>
@@ -19,7 +16,7 @@
 <div class="input-group-addon">
 <i class="fa fa-fw fa-usd"></i>
 </div>
-<input type="text" class="form-control" id="cuota" placeholder="Ingresa Valor Cuota" name="cuota"/>
+<input type="text" class="form-control" id="cuota" placeholder="Ingresa Valor Cuota" name="cuota" value="{{ $abonos->cuota }}"/>
 </div>
 <span class="text-red">{{ $errors->first('cuota') }}</span>
 </div>
@@ -31,13 +28,13 @@
 <div class="input-group-addon">
 <i class="fa fa-fw fa-usd"></i>
 </div>
-<input type="text" class="form-control" id="tipo_cuota" placeholder="Ingresa Tipo de cuota" name="tipo_cuota"/>
+<input type="text" class="form-control" id="tipo_cuota" placeholder="Ingresa Tipo de cuota" name="tipo_cuota" value="{{ $abonos->tipo_cuota }}"/>
 </div>
 <span class="text-red">{{ $errors->first('tipo_cuota') }}</span>
 </div>
 
 <div class="form-group">
-<input type="hidden" class="form-control" id="creditos_id" placeholder="Id del credito" name="creditos_id" value="{{ $creditos->id }}"/>
+<input type="hidden" class="form-control" id="creditos_id" placeholder="Id del credito" name="creditos_id" value="{{ $abonos->creditos_id }}"/>
 </div>
 
 <div class="form-group">

@@ -6,7 +6,7 @@ use App\Abonos;
 use App\Creditos;
 use App\Clientes;
 use Carbon\Carbon;
-
+use App\Http\Requests\AbonosRequest;
 
 
 use Illuminate\Http\Request;
@@ -53,7 +53,7 @@ class AbonosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AbonosRequest $request)
     {
         $abonos = Abonos::create($request->all());
         $id = $request->creditos_id; 
@@ -92,11 +92,13 @@ class AbonosController extends Controller
      * @param  \App\Abonos  $creditos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Abonos $abonos)
+    public function update(AbonosRequest $request, Abonos $abonos)
     {
        $abonos->update($request->all());
+       $id = $request->creditos_id; 
 
-       return redirect()->route('abonos.index')
+
+       return redirect()->route('abonos.index',['id' => $id])
        ->with('info', 'Abono Modificado con éxito');
     }
 
@@ -106,11 +108,11 @@ class AbonosController extends Controller
      * @param  \App\Abonos  $abonos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Abonos $abono)
+    public function destroy(Abonos $abonos)
     {
-        $abono->delete();
-
-        return back()->with('info','Eliminado correctamente'); 
+        $abonos->delete();
+       
+        return back()->with('info','Abono con Eliminado Correctamente'); 
     }
 
 

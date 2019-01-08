@@ -22,10 +22,10 @@ class CreateCreditosTable extends Migration
             $table->integer('cuotas');
             $table->integer('plazo');
             $table->integer('fre_pago');
-            $table->integer('cap_actual');
-            $table->integer('int_actual');
-            $table->integer('tot_actual');
-            $table->integer('cuo_actual');
+            $table->integer('cap_actual')->nullable();
+            $table->integer('int_actual')->nullable();
+            $table->integer('tot_actual')->nullable();
+            $table->integer('cuo_actual')->nullable();
             $table->integer('clientes_id')->unsigned();
             $table->foreign('clientes_id')->references('id')->on('clientes')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

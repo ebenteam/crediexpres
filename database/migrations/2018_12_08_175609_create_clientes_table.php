@@ -18,9 +18,9 @@ class CreateClientesTable extends Migration
             $table->string('nombres');
             $table->string('apellidos');
             $table->string('dir_casa');
-            $table->string('dir_trabajo');
+            $table->string('dir_trabajo')->nullable();
             $table->string('cel_uno');
-            $table->string('cel_dos');
+            $table->string('cel_dos')->nullable();
             $table->timestamps();
         });
     }

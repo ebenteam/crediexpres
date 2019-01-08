@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 
 
-
+use App\Http\Requests\CreditosRequest;
 
 use Illuminate\Http\Request;
 
@@ -47,9 +47,25 @@ class CreditosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreditosRequest $request)
     {
-        $creditos = Creditos::create($request->all());
+        
+
+        $creditos = new Creditos;
+        $creditos->fecha = $request->input('fecha');
+        $creditos->capital = $request->input('capital');
+        $creditos->interes = $request->input('interes');
+        $creditos->total = $request->input('total');
+        $creditos->cuotas = $request->input('cuotas');
+        $creditos->plazo = $request->input('plazo');
+        $creditos->fre_pago = $request->input('fre_pago');
+        $creditos->cap_actual = $request->input('capital');
+        $creditos->int_actual = $request->input('interes');
+        $creditos->tot_actual = $request->input('total');
+        $creditos->cuo_actual = $request->input('cuotas');
+        $creditos->clientes_id = $request->input('clientes_id');
+        $creditos->save();
+
         $id = $request->clientes_id; 
     
         return redirect()->route('creditos.index', ['id' => $id])
@@ -89,8 +105,10 @@ class CreditosController extends Controller
     public function update(Request $request, Creditos $creditos)
     {
        $creditos->update($request->all());
+       $id = $request->clientes_id; 
 
-       return redirect()->route('creditos.index')
+
+       return redirect()->route('creditos.index',['id' => $id])
        ->with('info', 'Credito Modificado con éxito');
     }
 
@@ -104,7 +122,7 @@ class CreditosController extends Controller
     {
         $creditos->delete();
 
-        return back()->with('info','Eliminado correctamente'); 
+        return back()->with('info','Credito Eliminado Correctamente'); 
     }
 
 

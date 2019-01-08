@@ -12,7 +12,7 @@
       <br>
 
       <div class="info-box">
-            <span class="info-box-icon bg-blue"><i class="fa fa-fw fa-user"></i></span>
+            <span class="info-box-icon bg-orange"><i class="fa fa-fw fa-user"></i></span>
 
             <div class="info-box-content">
               <span class="info-box-text">{{ $clientes->nombres }} {{ $clientes->apellidos }}</span>
@@ -57,11 +57,32 @@
                   <td>{{ $credito->fecha }}</td>
                   <td>{{ $credito->total }}</td>
 
-                  <td>
                   
+
+                  <td>
+
                   @can ('abonos.index')
                   <a class="btn btn-success btn-flat" href="{{ route('abonos.index',$credito->id) }}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>  
                   @endcan
+                  
+                  
+                            
+                  @can ('creditos.edit')
+                 <a class="btn btn-warning btn-flat" href="{{ route('creditos.edit',$credito->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>
+                  @endcan
+                                
+                
+                  @can ('creditos.destroy')
+                  {!! Form::open(['route' => ['creditos.destroy', $credito->id ],
+                  'method' => 'DELETE']) !!} 
+                  <button class="btn btn-danger btn-flat"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></button>
+                   {!! Form::close() !!}    
+                  @endcan
+
+                  </td>
+                 
+
+                
 
                   
                 </tr>

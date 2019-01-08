@@ -82,6 +82,13 @@
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Abonos Realizados</h3>
+              @if (session('info'))
+             <div class="alert alert-success alert-dismissible">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             <h4><i class="icon fa fa-check"></i> Correcto!</h4>
+             <strong>{{ session('info') }}</strong>
+              </div>
+             @endif
 
               <!-- /.box-tools -->
             </div>
@@ -108,9 +115,20 @@
                  
 
                   <td>
-                 
-                  <a class="btn btn-success btn-flat" href=""><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>  
-                 
+                  @can ('abonos.edit')
+                 <a class="btn btn-warning btn-flat" href="{{ route('abonos.edit',$abono->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>
+                  @endcan
+
+                  @can ('abonos.show')
+                 <a class="btn btn-success btn-flat" href="{{ route('abonos.show',$abono->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>
+                  @endcan
+
+                  @can ('abonos.destroy')
+                  {!! Form::open(['route' => ['abonos.destroy',$abono->id],
+                  'method' => 'DELETE']) !!} 
+                  <button class="btn btn-danger btn-flat"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></button>
+                   {!! Form::close() !!}    
+                  @endcan
 
 
                   
