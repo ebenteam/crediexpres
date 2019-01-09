@@ -53,13 +53,29 @@ class AbonosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AbonosRequest $request)
+    public function store(AbonosRequest $request,Creditos $creditos )
     {
         $abonos = Abonos::create($request->all());
-        $id = $request->creditos_id; 
-    
+
+
+        //obtengo el id del credito por medio del arrego en el request
+        $id = $request->creditos_id;
+        //obtengo el valor de tot_actual de la tabla creditos con el id del credito
+        $tot_actual = Creditos::where('id', '=', $id)->value('tot_actual');
+        //realizo la resta entre el tot_actual y el abono 
+        $actualtotal = $tot_actual-$request->cuota;
+
+        //actualizo el valor en la tabla creditos 
+        $creditoactual = Creditos::find($id);
+        $creditoactual->tot_actual = $actualtotal;
+        $creditoactual->save();
+
+
+        
         return redirect()->route('abonos.index', ['id' => $id])
         ->with('info', 'Credito Nuevo creado con éxito');
+
+        
 
     }
 
@@ -108,10 +124,21 @@ class AbonosController extends Controller
      * @param  \App\Abonos  $abonos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Abonos $abonos)
+    public function destroy(Abonos $abonos,Creditos $creditos )
     {
+        //obtengo el id del credito por medio del arrego en el request
+        $id = $abonos->creditos_id;
+        //obtengo el valor de tot_actual de la tabla creditos con el id del credito
+        $tot_actual = Creditos::where('id', '=', $id)->value('tot_actual');
+        //realizo la suma entre el tot_actual y el abono que se elimina 
+        $actualtotal = $tot_actual+$abonos->cuota;
+
+         //actualizo el valor en la tabla creditos 
+         $creditoactual = Creditos::find($id);
+         $creditoactual->tot_actual = $actualtotal;
+         $creditoactual->save();
+
         $abonos->delete();
-       
         return back()->with('info','Abono con Eliminado Correctamente'); 
     }
 
