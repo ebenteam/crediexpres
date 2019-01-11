@@ -20,6 +20,7 @@
 
 <section class="content">
 
+
 <div class="form-group">
 <h4 class="text-blue"><i class="glyphicon glyphicon-user"></i>Fecha: <strong>{{ $abonos->fecha }} </strong> </h4>
 </div>

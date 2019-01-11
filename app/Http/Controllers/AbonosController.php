@@ -29,8 +29,17 @@ class AbonosController extends Controller
         **/
         $idcliente = Creditos::where('id', '=', $id)->value('clientes_id');
         $clientes = Clientes::find($idcliente);
+
+        //se realiza la suma en la columna de una tabla que pertencen a un id
+          $sumaabonos = Abonos::where('creditos_id', '=', $id)->sum('cuota');
+
+          $sumacuotas = Abonos::where('creditos_id', '=', $id)->count();
+
+
+          $utilidad = $sumaabonos-$creditos->capital;
+
       
-        return view('abonos.index', compact('abonos','creditos','clientes'));
+        return view('abonos.index', compact('abonos','creditos','clientes','sumaabonos','sumacuotas','utilidad'));
 
     }
 
@@ -108,12 +117,27 @@ class AbonosController extends Controller
      * @param  \App\Abonos  $creditos
      * @return \Illuminate\Http\Response
      */
-    public function update(AbonosRequest $request, Abonos $abonos)
+    public function update(AbonosRequest $request, Abonos $abonos,Creditos $creditos)
     {
-       $abonos->update($request->all());
-       $id = $request->creditos_id; 
+        //obtengo el id del credito por medio del arrego en el request
+        $id = $request->creditos_id;
+        $idabono = $abonos->id;
+        //obtengo el valor de tot_actual de la tabla creditos con el id del credito
+        $tot_actual = Creditos::where('id', '=', $id)->value('tot_actual');
+        $abonoactual = Abonos::where('id', '=', $idabono)->value('cuota'); 
+        //realizo la suma entre el tot_actual y el abono que se elimina 
+        $actualtone = ($tot_actual+$abonoactual)-$request->cuota;//no esta llegando nada a abono actual
+        $actualttwo = $actualtone;
 
 
+        //actualizo el valor en la tabla creditos 
+        $creditoactual = Creditos::find($id);
+        $creditoactual->tot_actual = $actualttwo;
+        $creditoactual->save();
+
+        $abonos->update($request->all());
+
+        
        return redirect()->route('abonos.index',['id' => $id])
        ->with('info', 'Abono Modificado con éxito');
     }

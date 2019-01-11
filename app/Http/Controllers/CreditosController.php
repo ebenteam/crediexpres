@@ -49,19 +49,32 @@ class CreditosController extends Controller
      */
     public function store(CreditosRequest $request)
     {
-        
+      //Ecuaciones para obtener datos
+
+      // calculo del interes  
+
+      $interes = ($request->capital * $request->interes)/100;
+
+      // campo total utilidad con plazo
+
+      $utilidad = ($interes/30) * $request->plazo;
+
+      //total capital mas interes 
+
+      $totalglobal = $request->capital + $utilidad;
+     
 
         $creditos = new Creditos;
         $creditos->fecha = $request->input('fecha');
         $creditos->capital = $request->input('capital');
         $creditos->interes = $request->input('interes');
-        $creditos->total = $request->input('total');
+        $creditos->total = $totalglobal;
         $creditos->cuotas = $request->input('cuotas');
         $creditos->plazo = $request->input('plazo');
         $creditos->fre_pago = $request->input('fre_pago');
         $creditos->cap_actual = $request->input('capital');
-        $creditos->int_actual = $request->input('interes');
-        $creditos->tot_actual = $request->input('total');
+        $creditos->int_actual = $utilidad;
+        $creditos->tot_actual = $totalglobal;
         $creditos->cuo_actual = $request->input('cuotas');
         $creditos->clientes_id = $request->input('clientes_id');
         $creditos->save();
@@ -103,8 +116,38 @@ class CreditosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Creditos $creditos)
-    {
-       $creditos->update($request->all());
+
+    {   
+ //Ecuaciones para obtener datos
+
+      // calculo del interes  
+
+      $interes = ($request->capital * $request->interes)/100;
+
+      // campo total utilidad con plazo
+
+      $utilidad = ($interes/30) * $request->plazo;
+
+      //total capital mas interes 
+
+      $totalglobal = $request->capital + $utilidad;
+     
+
+        $creditos = Creditos::find($creditos->id);
+        $creditos->fecha = $request->input('fecha');
+        $creditos->capital = $request->input('capital');
+        $creditos->interes = $request->input('interes');
+        $creditos->total = $totalglobal;
+        $creditos->cuotas = $request->input('cuotas');
+        $creditos->plazo = $request->input('plazo');
+        $creditos->fre_pago = $request->input('fre_pago');
+        $creditos->cap_actual = $request->input('capital');
+        $creditos->int_actual = $utilidad;
+        $creditos->tot_actual = $totalglobal;
+        $creditos->cuo_actual = $request->input('cuotas');
+        $creditos->clientes_id = $request->input('clientes_id');
+        $creditos->save();
+
        $id = $request->clientes_id; 
 
 

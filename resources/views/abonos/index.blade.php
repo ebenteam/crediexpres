@@ -42,11 +42,12 @@
 
               <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a href="#"><i class="fa fa-fw fa-rocket"></i>Inicio Credito<span class="pull-right badge bg-blue">{{ $creditos->fecha }}</span></a></li>
-                <li><a href="#"><i class="fa fa-fw fa-money"></i>Capital<span class="pull-right badge bg-aqua">{{ $creditos->capital }}</span></a></li>
-                <li><a href="#"><i class="fa fa-fw fa-line-chart"></i>Interes<span class="pull-right badge bg-green">{{ $creditos->interes }}</span></a></li>
-                <li><a href="#"><i class="fa fa-fw fa-usd"></i>Total<span class="pull-right badge bg-yellow">{{ $creditos->total }}</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-money"></i>Capital<span class="pull-right badge bg-aqua">{{ number_format($creditos->capital,0) }}</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-line-chart"></i>Interes<span class="pull-right badge bg-green">{{ $creditos->interes }}%</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-line-chart"></i>Utilidad:<span class="pull-right badge bg-green">{{ number_format($creditos->int_actual,0) }}</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-usd"></i>Total<span class="pull-right badge bg-yellow">{{ number_format($creditos->total,0) }}</span></a></li>
                 <li><a href="#"><i class="fa fa-fw fa-calendar-minus-o"></i>Cuotas<span class="pull-right badge bg-red">{{ $creditos->cuotas }}</span></a></li>
-                <li><a href="#"><i class="fa fa-fw fa-calendar-plus-o"></i>Plazo<span class="pull-right badge bg-green">{{ $creditos->plazo }}</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-calendar-plus-o"></i>Plazo en Días<span class="pull-right badge bg-green">{{ $creditos->plazo }}</span></a></li>
                 <li><a href="#"><i class="fa fa-fw fa-table"></i>Frecuencia Pago<span class="pull-right badge bg-blue">{{ $creditos->fre_pago }}</span></a></li>
               </ul>
             
@@ -66,10 +67,11 @@
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
-                <li><a href="#"><i class="fa fa-circle-o text-red"></i>Capital Actual:<span class="pull-right badge bg-red">{{ $creditos->cap_actual }}</span></a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i>Interes Actual:<span class="pull-right badge bg-yellow">{{ $creditos->int_actual }}</span></a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-light-green"></i>Total Actual:<span class="pull-right badge bg-green"> {{ $creditos->tot_actual }}</span></a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i>Cuota Actual:<span class="pull-right badge bg-blue"> {{ $creditos->cuo_actual }}</span></a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-red"></i>Capital Actual:<span class="pull-right badge bg-blue">{{ number_format($creditos->cap_actual,0) }}</span></a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i>Utilidad Actual:<span class="pull-right badge bg-green">{{ number_format($utilidad,0) }}</span></a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-light-green"></i>Total Debe:<span class="pull-right badge bg-yellow"> {{number_format($creditos->tot_actual,0)}}</span></a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i>Cuota Actual:<span class="pull-right badge bg-red"> {{ $sumacuotas }}</span></a></li>
+                <li class="active"><a href="#"><i class="fa fa-fw fa-rocket"></i>Total Abonos: <span class="pull-right badge bg-green"><strong>{{ number_format($sumaabonos,0)}}</strong></span></a></li>
 
               </ul>
             </div>
@@ -111,7 +113,7 @@
               
                 <tr>
                   <td>{{ $abono->fecha }}</td>
-                  <td>{{ $abono->cuota }}</td>
+                  <td>{{ number_format($abono->cuota,0) }}</td>
                  
 
                   <td>

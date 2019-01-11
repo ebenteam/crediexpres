@@ -27,7 +27,6 @@ class CreditosRequest extends FormRequest
             'fecha'=> 'required',
             'capital'=> 'required|numeric',
             'interes'=> 'required|numeric',
-            'total'=> 'required|numeric',
             'cuotas'=> 'required|numeric',
             'plazo'=> 'required|numeric',
             'fre_pago'=> 'required|numeric',

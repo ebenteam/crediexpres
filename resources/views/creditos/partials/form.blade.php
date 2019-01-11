@@ -37,16 +37,6 @@
 </div>
 
 
-<div class="form-group">
-<label for="total">Total:</label>
-<div class="input-group">
-<div class="input-group-addon">
-<i class="fa fa-fw fa-usd"></i>
-</div>
-<input type="text" class="form-control" id="total" placeholder="Ingresa Total" name="total"/>
-</div>
-<span class="text-red">{{ $errors->first('total') }}</span>
-</div>
 
 <div class="form-group">
 <label for="cuotas">Cuotas:</label>
