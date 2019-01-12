@@ -156,6 +156,81 @@ class PermissionsTableSeeder extends Seeder
     ]);
 
 
+    //Abonos------------------------------------------------------------
+
+    Permission::create([
+        'name'   => 'Navegar Abonos',
+        'slug'   => 'abonos.index',
+        'description'   => 'Lista y navega todos los abonos del cliente',
+
+    ]);
+
+    Permission::create([
+        'name'   => 'Ver detalle de Abonos',
+        'slug'   => 'abonos.show',
+        'description'   => 'Ver en detalle cada abono',
+
+    ]);
+
+    Permission::create([
+        'name'   => 'Creación de Abonos',
+        'slug'   => 'abonos.create',
+        'description'   => 'Crea un abono al cliente',
+
+    ]);
+
+    Permission::create([
+        'name'   => 'Editar Abonos',
+        'slug'   => 'abonos.edit',
+        'description'   => 'Edita cualquier abono',
+
+    ]);
+
+    Permission::create([
+        'name'   => 'Eliminar Abonos',
+        'slug'   => 'abonos.destroy',
+        'description'   => 'Elimina abonos del sistema',
+
+    ]);
+
+
+
+    //Administrador------------------------------------------------------------
+
+    Permission::create([
+        'name'   => 'Cuadre del dia',
+        'slug'   => 'administracion.cuadredia',
+        'description'   => 'Informacion para realizar cuadre del dia',
+
+    ]);
+
+    Permission::create([
+        'name'   => 'Cuenta Total',
+        'slug'   => 'administracion.cuentatotal',
+        'description'   => 'Informacion detallada del total',
+
+    ]);
+
+    Permission::create([
+        'name'   => 'Gastos',
+        'slug'   => 'administracion.gastos',
+        'description'   => 'Informacion de los gastos de la empresa',
+
+    ]);
+
+    Permission::create([
+        'name'   => 'Listas de Cobros',
+        'slug'   => 'administracion.listacobros',
+        'description'   => 'Lista de Cobros a realizar',
+
+    ]);
+
+   
+
+
+
+
+
 
 
 

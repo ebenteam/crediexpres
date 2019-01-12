@@ -182,6 +182,31 @@
   <li class="{{ request()->is('clientes') ? 'active' : '' }}"><a href="{{ route('clientes.index') }}"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
   @endcan
 
+ 
+  <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Administrador</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="display: none;">
+
+            @can ('administracion.cuadredia')
+            <li><a href="{{ route('administracion.cuadredia') }}"><i class="fa fa-circle-o"></i> Cuadre Dia</a></li>
+            @endcan
+            @can ('administracion.cuentatotal')
+            <li><a href="{{ route('administracion.cuentatotal') }}"><i class="fa fa-circle-o"></i> Cuenta Total</a></li>
+            @endcan
+            @can ('administracion.gastos')
+            <li><a href="{{ route('administracion.gastos') }}"><i class="fa fa-circle-o"></i> Gastos</a></li>
+            @endcan
+            @can ('administracion.listacobros')
+            <li><a href="{{ route('administracion.listacobros') }}"><i class="fa fa-circle-o"></i> Lista Cobros</a></li>
+            @endcan
+          </ul>
+        </li>
+
 </ul>
 <!-- /.sidebar-menu -->
 </section>

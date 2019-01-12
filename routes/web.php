@@ -136,6 +136,28 @@ Route::middleware(['auth'])->group(function() {
     ->middleware('permission:abonos.edit');
 
 
+    //Administracion
+
+    Route::get('administracion/cuadredia', 'AdministracionController@cuadredia')->name('administracion.cuadredia')
+        ->middleware('permission:administracion.cuadredia');
+
+    Route::get('administracion/cuentatotal', 'AdministracionController@cuentatotal')->name('administracion.cuentatotal')
+        ->middleware('permission:administracion.cuentatotal');
+
+    Route::get('administracion/gastos', 'AdministracionController@gastos')->name('administracion.gastos')
+        ->middleware('permission:administracion.gastos');
+
+    Route::get('administracion/listacobros', 'AdministracionController@listacobros')->name('administracion.listacobros')
+        ->middleware('permission:administracion.listacobros');
+
+        
+
+
+    
+
+
+
+
 
 
 });
