@@ -20,14 +20,19 @@ class AdministracionController extends Controller
     public function cuadredia()
     {
 
+        $now = Carbon::now();
+        $formatfecha = $now->toDateString(); 
+
+
         $abonos = DB::table('abonos')
         ->Join('creditos', 'creditos.id' , '=' ,'abonos.creditos_id')
         ->Join('clientes', 'clientes.id' , '=' ,'creditos.clientes_id')
-        ->select('abonos.fecha', 'abonos.cuota', 'abonos.usuario', 'creditos.tot_actual', 'clientes.nombres' )
+        ->select('abonos.fecha', 'abonos.cuota', 'abonos.usuario', 'creditos.total', 'clientes.nombres','clientes.apellidos' )
+        ->where('abonos.fecha', '=', $formatfecha )
         ->get();
 
         
-        return view('administracion.cuadredia', compact('abonos'));
+        return view('administracion.cuadredia', compact('abonos','formatfecha'));
     }
     
 

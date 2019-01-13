@@ -72,7 +72,6 @@ class CreditosController extends Controller
         $creditos->cuotas = $request->input('cuotas');
         $creditos->plazo = $request->input('plazo');
         $creditos->fre_pago = $request->input('fre_pago');
-        $creditos->cap_actual = $request->input('capital');
         $creditos->int_actual = $utilidad;
         $creditos->tot_actual = $totalglobal;
         $creditos->cuo_actual = $request->input('cuotas');

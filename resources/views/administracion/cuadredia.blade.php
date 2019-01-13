@@ -41,7 +41,7 @@
             <div class="box-body no-padding">
 
               <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><i class="fa fa-fw fa-rocket"></i>Inicio Credito<span class="pull-right badge bg-blue">1</span></a></li>
+                <li class="active"><a href="#"><i class="fa fa-fw fa-rocket"></i>Inicio Credito<span class="pull-right badge bg-blue">{{ $formatfecha }}</span></a></li>
                 <li><a href="#"><i class="fa fa-fw fa-money"></i>Capital<span class="pull-right badge bg-aqua">2</span></a></li>
                 <li><a href="#"><i class="fa fa-fw fa-line-chart"></i>Interes<span class="pull-right badge bg-green">3</span></a></li>
                 
@@ -111,7 +111,7 @@
                   <td>{{ $abono->fecha }}</td>
                   <td>{{ number_format($abono->cuota,0) }}</td>
                   <td>{{ $abono->usuario}}</td>
-                  <td>{{ $abono->tot_actual}}</td>
+                  <td>{{ $abono->total}}</td>
                   <td>{{ $abono->nombres}}</td>
                  
 

@@ -71,7 +71,7 @@
                 <li><a href="#"><i class="fa fa-circle-o text-yellow"></i>Utilidad Actual:<span class="pull-right badge bg-green">{{ number_format($utilidad,0) }}</span></a></li>
                 <li><a href="#"><i class="fa fa-circle-o text-light-green"></i>Total Debe:<span class="pull-right badge bg-yellow"> {{number_format($creditos->tot_actual,0)}}</span></a></li>
                 <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i>Cuota Actual:<span class="pull-right badge bg-red"> {{ $sumacuotas }}</span></a></li>
-                <li class="active"><a href="#"><i class="fa fa-fw fa-rocket"></i>Total Abonos: <span class="pull-right badge bg-green"><strong>{{ number_format($sumaabonos,0)}}</strong></span></a></li>
+                <li class="active"><a href="#"><i class="fa fa-fw fa-rocket"></i>Total Abonos: <span class="pull-right badge bg-green"><strong>{{ number_format($creditos->sum_abonos,0)}}</strong></span></a></li>
 
               </ul>
             </div>
