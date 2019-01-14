@@ -25,8 +25,8 @@ class AbonosRequest extends FormRequest
     {
         return [
 
-            'cuota'=> 'required|numeric',
-            'tipo_cuota'=> 'required|numeric'
+            'cuota'=> 'required|numeric|Min:1',
+            'tipo_cuota'=> 'required'
 
         ];
     }

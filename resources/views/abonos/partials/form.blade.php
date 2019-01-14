@@ -24,17 +24,14 @@
 <span class="text-red">{{ $errors->first('cuota') }}</span>
 </div>
 
-
 <div class="form-group">
-<label for="tipo_cuota">Tipo Cuota:</label>
-<div class="input-group">
-<div class="input-group-addon">
-<i class="fa fa-fw fa-usd"></i>
-</div>
-<input type="text" class="form-control" id="tipo_cuota" placeholder="Ingresa Tipo de cuota" name="tipo_cuota"/>
-</div>
+<label>Tipo Cuota:</label>
+<select class="form-control" id="tipo_cuota" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tipo_cuota">
+<option selected="selected">Normal</option>
+<option>Interes</option>
+</select>
 <span class="text-red">{{ $errors->first('tipo_cuota') }}</span>
-</div>
+</div>   
 
 <div class="form-group">
 <input type="hidden" class="form-control" id="creditos_id" placeholder="Id del credito" name="creditos_id" value="{{ $creditos->id }}"/>

@@ -68,7 +68,7 @@
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
                 <li><a href="#"><i class="fa fa-circle-o text-red"></i>Capital Actual:<span class="pull-right badge bg-blue">{{ number_format($creditos->cap_actual,0) }}</span></a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i>Utilidad Actual:<span class="pull-right badge bg-green">{{ number_format($utilidad,0) }}</span></a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i>Utilidad Actual:<span class="pull-right badge bg-green">{{ number_format($creditos->utilidad_act,0) }}</span></a></li>
                 <li><a href="#"><i class="fa fa-circle-o text-light-green"></i>Total Debe:<span class="pull-right badge bg-yellow"> {{number_format($creditos->tot_actual,0)}}</span></a></li>
                 <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i>Cuota Actual:<span class="pull-right badge bg-red"> {{ $sumacuotas }}</span></a></li>
                 <li class="active"><a href="#"><i class="fa fa-fw fa-rocket"></i>Total Abonos: <span class="pull-right badge bg-green"><strong>{{ number_format($creditos->sum_abonos,0)}}</strong></span></a></li>
@@ -103,6 +103,7 @@
 
                   <th>Fecha</th>
                   <th>Cuota</th>
+                  <th>Tipo</th>
                   <th>Opciones</th>
                   
                   
@@ -114,6 +115,7 @@
                 <tr>
                   <td>{{ $abono->fecha }}</td>
                   <td>{{ number_format($abono->cuota,0) }}</td>
+                  <td>{{ ($abono->tipo_cuota) }}</td>
                  
 
                   <td>
