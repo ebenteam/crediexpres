@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () {return view('welcome');});
 
 Auth::routes();
 
@@ -22,6 +20,23 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Rutas
 
 Route::middleware(['auth'])->group(function() {
+
+
+    //Rutas Menu Izquierdo
+
+    //Clientes
+
+    Route::get('clientes/modificar', 'ClientesController@modificar')->name('clientes.modificar');
+    Route::get('clientes/eliminar', 'ClientesController@eliminar')->name('clientes.eliminar');
+    Route::get('clientes/ver', 'ClientesController@ver')->name('clientes.ver');
+
+     //Cliente Credito
+
+     Route::get('creditos/crear', 'CreditosController@crear')->name('creditos.crear');
+     Route::get('creditos/modificar', 'CreditosController@modificar')->name('creditos.modificar');
+
+    
+
 
     //Roles
     Route::post('roles/store', 'RoleController@store')->name('roles.store')
@@ -93,7 +108,7 @@ Route::middleware(['auth'])->group(function() {
     Route::post('creditos/store', 'CreditosController@store')->name('creditos.store')
         ->middleware('permission:creditos.create');
 
-    Route::get('creditos/{id}', 'CreditosController@index')->name('creditos.index')
+    Route::get('creditos', 'CreditosController@index')->name('creditos.index')
     ->middleware('permission:creditos.index');
 
     Route::get('creditos/create/{id}', 'CreditosController@create')->name('creditos.create')
@@ -149,6 +164,10 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('administracion/listacobros', 'AdministracionController@listacobros')->name('administracion.listacobros')
         ->middleware('permission:administracion.listacobros');
+
+
+
+
 
         
 

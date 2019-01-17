@@ -5,12 +5,10 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Creditos
-        <small>Aqui puedes consultar Creditos</small>
-
+        Clientes Modificar
+        <small>Modificar la Informacion de los Clientes</small><td>
+          </td>
       </h1>
-      <br>
-
       @if (session('info'))
       <div class="alert alert-success alert-dismissible">
              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -31,38 +29,32 @@
                 <thead>
                 <tr>
                  
-                  <th>Nombres</th>
-                  <th>Fecha Credito</th>
-                  <th>Total</th>
-                  <th>Credito</th>
-                  
+                <th>Nombres</th>
+                  <th>Celular</th>
+                  <th>Detalle</th>
                   
                   
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($clicres as $clicre)
+                @foreach($clientes as $cliente)
               
                 <tr>
-                  <td>{{ $clicre->nombres }} {{ $clicre->apellidos }}</td>
-                  <td>{{ $clicre->fecha }}</td>
-                  <td>{{ number_format($clicre->total,0) }}</td>
-
-                  
+                <td>{{ $cliente->nombres }} {{ $cliente->apellidos }}</td>
+                  <td>{{ $cliente->cel_uno }}</td>
 
                   <td>
+                
 
-                  @can ('abonos.index')
-                  <a class="btn btn-success btn-flat" href="{{ route('abonos.index',$clicre->id) }}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>
+                  @can ('clientes.edit')
+                  <a class="btn btn-warning btn-flat" href="{{ route('clientes.edit',$cliente->id)}}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>    
                   @endcan
 
                   
-
                   </td>
+
+
                  
-
-                
-
                   
                 </tr>
 
@@ -70,25 +62,15 @@
                </tbody>
                 </tfoot>
               </table>
-              
-
-              
             </div>
-            
-            
             <!-- /.box-body -->
           </div>
-         
           <!-- /.box -->
         </div>
         <!-- /.col -->
       </div>
-      <a class="btn btn-success btn-flat" href="{{ url()->previous() }}"><i class="fa fa-fw fa-mail-reply-all" aria-hidden="true"></i>Volver</a>
       <!-- /.row -->
     </section>
-
-
-
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

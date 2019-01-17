@@ -1,4 +1,4 @@
-@extends('desing.tablas')
+@extends('desing.formularios')
 @section('content')
 
  <!-- Content Wrapper. Contains page content -->
@@ -6,10 +6,9 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Abonos
-
+        Cuadre del Dia
        
-        <small><strong>Hola</strong>/ Información detallada del Dia</small>
+        <small>Información detallada del Dia</small>
         
       
       </h1> <br>
@@ -25,7 +24,7 @@
       <div class="row">
         <div class="col-md-3">
            
-          <a href=" " class="btn btn-primary btn-block margin-bottom">Nuevo Abono</a>
+          <a href=" " class="btn btn-primary btn-block margin-bottom">Fecha Anterior</a>
          
           <div class="box box-solid">
             <div class="box-header with-border">
@@ -41,9 +40,20 @@
             <div class="box-body no-padding">
 
               <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><i class="fa fa-fw fa-rocket"></i>Inicio Credito<span class="pull-right badge bg-blue">{{ $formatfecha }}</span></a></li>
-                <li><a href="#"><i class="fa fa-fw fa-money"></i>Capital<span class="pull-right badge bg-aqua">2</span></a></li>
-                <li><a href="#"><i class="fa fa-fw fa-line-chart"></i>Interes<span class="pull-right badge bg-green">3</span></a></li>
+              <div class="form-group">
+              <label>Fecha:</label>
+              <div class="input-group date">
+              <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+              </div>
+              <input type="text" class="form-control pull-right" id="datepicker" name="fecha" value="{{ $formatfecha }}"/>
+              </div>
+              <!-- /.input group -->
+              </div>
+              
+                <li><a href="#"><i class="fa fa-fw fa-money"></i>Capital<span class="pull-right badge bg-aqua">{{number_format($resabonos,0) }}</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-line-chart"></i>Utilidad<span class="pull-right badge bg-green">3</span></a></li>
+                <li class="active"><a href="#"><i class="fa fa-fw fa-rocket"></i>Total Dia:<span class="pull-right badge bg-blue">{{ number_format($sumcuota,0) }}</span></a></li>
                 
               </ul>
             
@@ -51,27 +61,7 @@
             
             <!-- /.box-body -->
           </div>
-          <!-- /. box -->
-          <div class="box box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title">Datos</h3>
-
-              <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>
-            </div>
-            <div class="box-body no-padding">
-              <ul class="nav nav-pills nav-stacked">
-                <li><a href="#"><i class="fa fa-circle-o text-red"></i>Capital Actual:<span class="pull-right badge bg-blue"></span></a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i>Utilidad Actual:<span class="pull-right badge bg-green"></span></a></li>
-               
-
-              </ul>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+        
         </div>
         <!-- /.col -->
         <div class="col-md-9">
@@ -97,9 +87,9 @@
 
                   <th>Fecha</th>
                   <th>Cuota</th>
-                  <th>Cobrador</th>
-                  <th>Total</th>
                   <th>Cliente</th>
+                  <th>Cobrador</th>
+                  
                   
                   
                 </tr>
@@ -110,9 +100,9 @@
                 <tr>
                   <td>{{ $abono->fecha }}</td>
                   <td>{{ number_format($abono->cuota,0) }}</td>
+                  <td>{{ $abono->nombres }} {{ $abono->apellidos }}</td>
                   <td>{{ $abono->usuario}}</td>
-                  <td>{{ $abono->total}}</td>
-                  <td>{{ $abono->nombres}}</td>
+                  
                  
 
                  

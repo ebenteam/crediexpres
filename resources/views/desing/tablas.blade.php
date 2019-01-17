@@ -182,6 +182,52 @@
   <li class="{{ request()->is('clientes') ? 'active' : '' }}"><a href="{{ route('clientes.index') }}"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
   @endcan
 
+  <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Creditos</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="display: none;">
+
+          
+            <li><a href="{{ route('creditos.crear') }}"><i class="fa fa-circle-o"></i>Crear Creditos</a></li>
+
+           
+            <li><a href="{{ route('creditos.modificar') }}"><i class="fa fa-circle-o"></i>Modificar Creditos</a></li>
+         
+            @can ('clientes.index')
+            <li><a href="{{ route('clientes.index') }}"><i class="fa fa-circle-o"></i>Eliminar Creditos</a></li>
+            @endcan
+  
+          </ul>
+        </li>
+
+  <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Clientes</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="display: none;">
+
+            @can ('clientes.create')
+            <li><a href="{{ route('clientes.create') }}"><i class="fa fa-circle-o"></i>Crear Cliente</a></li>
+            @endcan
+
+            <li><a href="{{ route('clientes.ver') }}"><i class="fa fa-circle-o"></i>Ver Clientes</a></li>
+           
+            <li><a href="{{ route('clientes.modificar') }}"><i class="fa fa-circle-o"></i>Modificar Clientes</a></li>
+ 
+       
+            <li><a href="{{ route('clientes.eliminar') }}"><i class="fa fa-circle-o"></i>Eliminar Clientes</a></li>
+      
+  
+          </ul>
+        </li>
+
  
   <li class="treeview">
           <a href="#">

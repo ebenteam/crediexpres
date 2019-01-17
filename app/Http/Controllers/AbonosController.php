@@ -34,11 +34,15 @@ class AbonosController extends Controller
         //se realiza la suma en la columna de una tabla que pertencen a un id
           $sumacuotas = Abonos::where('creditos_id', '=', $id)->count();
 
+        //valor cuota 
+        $valorcuota = $creditos->total/$creditos->cuotas;
+
+
 
           
 
       
-        return view('abonos.index', compact('abonos','creditos','clientes','sumacuotas'));
+        return view('abonos.index', compact('abonos','creditos','clientes','sumacuotas','valorcuota'));
 
     }
 

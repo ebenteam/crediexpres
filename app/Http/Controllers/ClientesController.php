@@ -98,6 +98,45 @@ class ClientesController extends Controller
         return back()->with('info','Eliminado correctamente'); 
     }
 
+    /**
+     * MENU IZQUIERDA
+     * @param  \App\Clientes  $clientes
+     * @return \Illuminate\Http\Response
+     */
+    public function modificar()
+    {
+        $clientes = Clientes::all();
+        return view('clientes.modificar', compact('clientes'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Clientes  $clientes
+     * @return \Illuminate\Http\Response
+     */
+    public function ver()
+    {
+        $clientes = Clientes::all();
+        return view('clientes.ver', compact('clientes'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Clientes  $clientes
+     * @return \Illuminate\Http\Response
+     */
+    public function eliminar()
+    {
+        $clientes = Clientes::all();
+        return view('clientes.eliminar', compact('clientes'));
+    }
+
+    
+        
+    
+
 
 
 }

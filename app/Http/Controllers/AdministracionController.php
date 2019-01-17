@@ -23,16 +23,61 @@ class AdministracionController extends Controller
         $now = Carbon::now();
         $formatfecha = $now->toDateString(); 
 
-
+       // trae los abonos del dia 
         $abonos = DB::table('abonos')
         ->Join('creditos', 'creditos.id' , '=' ,'abonos.creditos_id')
         ->Join('clientes', 'clientes.id' , '=' ,'creditos.clientes_id')
-        ->select('abonos.fecha', 'abonos.cuota', 'abonos.usuario', 'creditos.total', 'clientes.nombres','clientes.apellidos' )
+        ->select('abonos.fecha', 'abonos.cuota', 'abonos.usuario', 'creditos.total', 'creditos.sum_abonos', 'clientes.nombres','clientes.apellidos' )
         ->where('abonos.fecha', '=', $formatfecha )
         ->get();
+       
+        //trae la suma de las cuotas del dia 
+
+        $sumcuota = DB::table('abonos')
+        ->Join('creditos', 'creditos.id' , '=' ,'abonos.creditos_id')
+        ->select('abonos.fecha', 'abonos.cuota')
+        ->where('abonos.fecha', '=', $formatfecha )
+        ->sum('abonos.cuota');
+
+        // trae la suma de del total abonado en todos los creditos asociados a las cuotas
+
+        $sumtotcredi = DB::table('abonos')
+        ->Join('creditos', 'creditos.id' , '=' ,'abonos.creditos_id')
+        ->select('abonos.fecha','creditos.sum_abonos')
+        ->where('abonos.fecha', '=', $formatfecha )
+        ->sum('creditos.sum_abonos');
+
+        //resta del total de los creditos con abonos del dia
+        
+        $resabonos = $sumtotcredi-$sumcuota;
+
+        //sumatoria de los capitales de los creditos involucrados 
+
+        $sumtotcapital = DB::table('abonos')
+        ->Join('creditos', 'creditos.id' , '=' ,'abonos.creditos_id')
+        ->select('abonos.fecha','creditos.sum_abonos')
+        ->where('abonos.fecha', '=', $formatfecha )
+        ->sum('creditos.capital');
+
+        //obtenemos el capital total de las cuotas del dia
+
+        $capitaldia = $sumtotcapital-$resabonos;
+
+
+
+
+
+
+
+
+
 
         
-        return view('administracion.cuadredia', compact('abonos','formatfecha'));
+
+
+
+  
+        return view('administracion.cuadredia', compact('abonos','formatfecha','sumcuota','resabonos'));
     }
     
 

@@ -47,6 +47,7 @@
                 <li><a href="#"><i class="fa fa-fw fa-line-chart"></i>Utilidad:<span class="pull-right badge bg-green">{{ number_format($creditos->int_actual,0) }}</span></a></li>
                 <li><a href="#"><i class="fa fa-fw fa-usd"></i>Total<span class="pull-right badge bg-yellow">{{ number_format($creditos->total,0) }}</span></a></li>
                 <li><a href="#"><i class="fa fa-fw fa-calendar-minus-o"></i>Cuotas<span class="pull-right badge bg-red">{{ $creditos->cuotas }}</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-calendar-minus-o"></i>Valor Cuota<span class="pull-right badge bg-red">{{ number_format($valorcuota)}}</span></a></li>
                 <li><a href="#"><i class="fa fa-fw fa-calendar-plus-o"></i>Plazo en Días<span class="pull-right badge bg-green">{{ $creditos->plazo }}</span></a></li>
                 <li><a href="#"><i class="fa fa-fw fa-table"></i>Frecuencia Pago<span class="pull-right badge bg-blue">{{ $creditos->fre_pago }}</span></a></li>
               </ul>

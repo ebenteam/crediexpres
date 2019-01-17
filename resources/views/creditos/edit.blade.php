@@ -6,8 +6,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Modificar Datos Cliente
-        <small>Modificar los datos del cliente</small>
+        Modificar Datos del Credito
+        <small>Modificar los datos del Credito</small>
       </h1>
       		
     </section>

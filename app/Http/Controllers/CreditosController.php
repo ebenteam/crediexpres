@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Creditos;
 use App\Clientes;
 use Carbon\Carbon;
+use DB;
 
 
 
@@ -19,12 +20,46 @@ class CreditosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $creditos = Creditos::where('clientes_id', '=', $id)->get();
-        $clientes = Clientes::find($id);
+       // trae los abonos del dia 
+       $clicres = DB::table('creditos')
+       ->Join('clientes', 'clientes.id', '=' ,'creditos.clientes_id')
+       ->select('clientes.nombres', 'clientes.apellidos', 'creditos.fecha', 'creditos.total', 'creditos.id')
+       ->get();
 
-        return view('creditos.index', compact('creditos','clientes'));
+
+       return view('creditos.index', compact('clicres'));
+
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function modificar()
+    {
+       // trae los abonos del dia 
+       $clicres = DB::table('creditos')
+       ->Join('clientes', 'clientes.id', '=' ,'creditos.clientes_id')
+       ->select('clientes.nombres', 'clientes.apellidos', 'creditos.fecha', 'creditos.total', 'creditos.id')
+       ->get();
+
+
+       return view('creditos.modificar', compact('clicres'));
+
+    }
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function crear()
+    {
+        $clientes = Clientes::all();
+        return view('creditos.crear', compact('clientes'));
 
     }
 
@@ -168,5 +203,7 @@ class CreditosController extends Controller
     }
 
 
+
+   
 
 }
