@@ -53,7 +53,7 @@
                   <td>
 
                   @can ('creditos.edit')
-                  <a class="btn btn-success btn-flat" href="{{ route('creditos.edit',$clicre->id) }}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>
+                  <a class="btn btn-warning btn-flat" href="{{ route('creditos.edit',$clicre->id) }}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>
                   @endcan
 
                   
@@ -83,7 +83,7 @@
         </div>
         <!-- /.col -->
       </div>
-      <a class="btn btn-success btn-flat" href="{{ url()->previous() }}"><i class="fa fa-fw fa-mail-reply-all" aria-hidden="true"></i>Volver</a>
+      <a class="btn btn-success btn-flat" href="{{ route('creditos.index') }}"><i class="fa fa-fw fa-mail-reply-all" aria-hidden="true"></i>Volver</a>
       <!-- /.row -->
     </section>
 

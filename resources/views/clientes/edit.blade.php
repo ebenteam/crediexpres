@@ -25,8 +25,8 @@
 
 @include('clientes.partials.formedit')
 
-@can ('clientes.show')
-<a class="btn btn-success btn-flat" href="{{ route('clientes.show',$clientes->id)}}"><i class="fa fa-fw fa-mail-reply-all" aria-hidden="true"></i>Volver</a>
+@can ('clientes.ver')
+<a class="btn btn-success btn-flat" href="{{ route('clientes.ver')}}"><i class="fa fa-fw fa-mail-reply-all" aria-hidden="true"></i>Volver</a>
 @endcan
 
 </div>

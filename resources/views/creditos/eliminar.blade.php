@@ -5,8 +5,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Creditos y Abonos 
-        <small>Aqui puedes consultar Creditos y realizar Abonos</small>
+        Eliminar Creditos 
+        <small>Aqui puedes eliminar los creditos</small>
 
       </h1>
       <br>
@@ -52,11 +52,13 @@
 
                   <td>
 
-                  @can ('abonos.index')
-                  <a class="btn btn-success btn-flat" href="{{ route('abonos.index',$clicre->id) }}"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></a>
+                  @can ('creditos.destroy')
+                  {!! Form::open(['route' => ['creditos.destroy', $clicre->id ],
+                  'method' => 'DELETE']) !!} 
+                  <button class="btn btn-danger btn-flat"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></button>
+                   {!! Form::close() !!}    
                   @endcan
 
-                  
 
                   </td>
                  
@@ -83,7 +85,7 @@
         </div>
         <!-- /.col -->
       </div>
-      
+      <a class="btn btn-success btn-flat" href="{{ route('creditos.index') }}"><i class="fa fa-fw fa-mail-reply-all" aria-hidden="true"></i>Volver</a>
       <!-- /.row -->
     </section>
 

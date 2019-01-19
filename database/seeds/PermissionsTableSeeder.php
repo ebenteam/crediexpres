@@ -225,6 +225,58 @@ class PermissionsTableSeeder extends Seeder
 
     ]);
 
+
+
+    //Menu Izquierda------------------------------------------------------------
+
+    //clientes menu izquierda
+
+    Permission::create([
+        'name'   => 'Menu clientes modificar',
+        'slug'   => 'clientes.modificar',
+        'description'   => 'Menu izquierda clientes modificar',
+
+    ]);
+
+    Permission::create([
+        'name'   => 'Menu clientes eliminar',
+        'slug'   => 'clientes.eliminar',
+        'description'   => 'Menu izquierda clientes eliminar',
+
+    ]);
+
+    Permission::create([
+        'name'   => 'Menu clientes detalle',
+        'slug'   => 'clientes.ver',
+        'description'   => 'Menu izquierda clientes detalle',
+
+    ]);
+
+    //creditos menu izquierda
+
+    Permission::create([
+        'name'   => 'Menu creditos crear',
+        'slug'   => 'creditos.crear',
+        'description'   => 'Menu izquierda creditos crear',
+
+    ]);
+
+    Permission::create([
+        'name'   => 'Menu creditos modificar',
+        'slug'   => 'creditos.modificar',
+        'description'   => 'Menu izquierda creditos modificar',
+
+    ]);
+
+    Permission::create([
+        'name'   => 'Menu creditos eliminar',
+        'slug'   => 'creditos.eliminar',
+        'description'   => 'Menu izquierda creditos eliminar',
+
+    ]);
+
+
+
    
 
 

@@ -69,6 +69,7 @@
         </div>
         <!-- /.col -->
       </div>
+      <a class="btn btn-success btn-flat" href="{{ route('creditos.index') }}"><i class="fa fa-fw fa-mail-reply-all" aria-hidden="true"></i>Volver</a>
       <!-- /.row -->
     </section>
     <!-- /.content -->

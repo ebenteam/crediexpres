@@ -178,8 +178,8 @@
   <li class="header">Menu</li>
   <!-- Optionally, you can add icons to the links -->
 
-  @can ('clientes.index')
-  <li class="{{ request()->is('clientes') ? 'active' : '' }}"><a href="{{ route('clientes.index') }}"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
+  @can ('creditos.index')
+  <li class="{{ request()->is('creditos') ? 'active' : '' }}"><a href="{{ route('creditos.index') }}"><i class="fa fa-user"></i> <span>Creditos y Abonos</span></a></li>
   @endcan
 
   <li class="treeview">
@@ -191,14 +191,20 @@
           </a>
           <ul class="treeview-menu" style="display: none;">
 
+          @can ('creditos.index')
+          <li><a href="{{ route('creditos.index') }}"><i class="fa fa-circle-o"></i>Creditos y Abonos</a></li>
+          @endcan
           
+           @can ('creditos.crear')
             <li><a href="{{ route('creditos.crear') }}"><i class="fa fa-circle-o"></i>Crear Creditos</a></li>
-
+            @endcan
            
+            @can ('creditos.modificar')
             <li><a href="{{ route('creditos.modificar') }}"><i class="fa fa-circle-o"></i>Modificar Creditos</a></li>
-         
-            @can ('clientes.index')
-            <li><a href="{{ route('clientes.index') }}"><i class="fa fa-circle-o"></i>Eliminar Creditos</a></li>
+            @endcan
+           
+            @can ('creditos.eliminar')
+            <li><a href="{{ route('creditos.eliminar') }}"><i class="fa fa-circle-o"></i>Eliminar Creditos</a></li>
             @endcan
   
           </ul>
@@ -213,17 +219,21 @@
           </a>
           <ul class="treeview-menu" style="display: none;">
 
+            @can ('clientes.ver')
+            <li><a href="{{ route('clientes.ver') }}"><i class="fa fa-circle-o"></i>Detalle Clientes</a></li>
+            @endcan
+
             @can ('clientes.create')
             <li><a href="{{ route('clientes.create') }}"><i class="fa fa-circle-o"></i>Crear Cliente</a></li>
             @endcan
 
-            <li><a href="{{ route('clientes.ver') }}"><i class="fa fa-circle-o"></i>Ver Clientes</a></li>
-           
+            @can ('clientes.modificar')
             <li><a href="{{ route('clientes.modificar') }}"><i class="fa fa-circle-o"></i>Modificar Clientes</a></li>
- 
-       
+            @endcan
+
+            @can ('clientes.eliminar')
             <li><a href="{{ route('clientes.eliminar') }}"><i class="fa fa-circle-o"></i>Eliminar Clientes</a></li>
-      
+            @endcan
   
           </ul>
         </li>

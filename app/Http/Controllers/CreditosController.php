@@ -51,6 +51,24 @@ class CreditosController extends Controller
 
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function eliminar()
+    {
+       // trae los abonos del dia 
+       $clicres = DB::table('creditos')
+       ->Join('clientes', 'clientes.id', '=' ,'creditos.clientes_id')
+       ->select('clientes.nombres', 'clientes.apellidos', 'creditos.fecha', 'creditos.total', 'creditos.id')
+       ->get();
+
+
+       return view('creditos.eliminar', compact('clicres'));
+
+    }
+
      /**
      * Display a listing of the resource.
      *

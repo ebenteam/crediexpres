@@ -26,14 +26,25 @@ Route::middleware(['auth'])->group(function() {
 
     //Clientes
 
-    Route::get('clientes/modificar', 'ClientesController@modificar')->name('clientes.modificar');
-    Route::get('clientes/eliminar', 'ClientesController@eliminar')->name('clientes.eliminar');
-    Route::get('clientes/ver', 'ClientesController@ver')->name('clientes.ver');
+    Route::get('clientes/modificar', 'ClientesController@modificar')->name('clientes.modificar')
+    ->middleware('permission:clientes.modificar');
+
+    Route::get('clientes/eliminar', 'ClientesController@eliminar')->name('clientes.eliminar')
+    ->middleware('permission:clientes.eliminar');
+
+    Route::get('clientes/ver', 'ClientesController@ver')->name('clientes.ver')
+    ->middleware('permission:clientes.ver');
 
      //Cliente Credito
 
-     Route::get('creditos/crear', 'CreditosController@crear')->name('creditos.crear');
-     Route::get('creditos/modificar', 'CreditosController@modificar')->name('creditos.modificar');
+     Route::get('creditos/crear', 'CreditosController@crear')->name('creditos.crear')
+     ->middleware('permission:creditos.crear');
+
+     Route::get('creditos/modificar', 'CreditosController@modificar')->name('creditos.modificar')
+     ->middleware('permission:creditos.modificar');
+
+     Route::get('creditos/eliminar', 'CreditosController@eliminar')->name('creditos.eliminar')
+     ->middleware('permission:creditos.eliminar');
 
     
 

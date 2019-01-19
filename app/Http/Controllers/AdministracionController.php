@@ -63,22 +63,27 @@ class AdministracionController extends Controller
 
         $capitaldia = $sumtotcapital-$resabonos;
 
-
-
-
-
-
-
-
-
-
-        
-
-
-
-  
         return view('administracion.cuadredia', compact('abonos','formatfecha','sumcuota','resabonos'));
     }
+
+
+ 
+    public function cuentatotal()
+    {
+        return view('administracion.cuentatotal', compact('clientes'));
+    }
+
+
+    public function gastos()
+    {
+        return view('administracion.gastos', compact('clientes'));
+    }
+
+    public function listacobros()
+    {
+        return view('administracion.listacobros', compact('clientes'));
+    }
+    
     
 
 
