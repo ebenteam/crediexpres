@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Creditos;
 use App\Clientes;
+use App\Abonos;
 use Carbon\Carbon;
 use DB;
 
@@ -125,6 +126,7 @@ class CreditosController extends Controller
         $creditos->cuotas = $request->input('cuotas');
         $creditos->plazo = $request->input('plazo');
         $creditos->fre_pago = $request->input('fre_pago');
+        $creditos->cap_actual = $request->input('capital');
         $creditos->int_actual = $utilidad;
         $creditos->tot_actual = $totalglobal;
         $creditos->cuo_actual = $request->input('cuotas');
@@ -183,19 +185,68 @@ class CreditosController extends Controller
       //total capital mas interes 
 
       $totalglobal = $request->capital + $utilidad;
-     
+
+      //Actualizar campo capital actual 
+
+
+
+
+      // Suma de Todos los abonos sum_abonos
+      $idc = $creditos->id; 
+      $sumaabonos = Abonos::where('creditos_id', '=', $idc)->sum('cuota');
+
+      $totaltt = $totalglobal-$sumaabonos;
+ 
+
+      // Capital cap_actual
+
+     // obtengo el capital de los datos nuevos 
+      $capitala = $request->capital; 
+
+      $capactual = $capitala-$sumaabonos;
+
+      $capitalb = 0;
+
+      if ($capactual>0)
+       {
+          $capitalb = $capactual;
+       }
+       elseif($capactual<=0)
+       {
+          $capitalb = 0; 
+        }
+
+      // fin cap_actual
+
+      // Capital utilidad_act
+
+      $util = $sumaabonos-$capitala;
+
+      $util_act = 0; 
+
+      if ($util<=0)
+       {
+          $util_act = 0;
+       }
+       elseif($util>0)
+       {
+          $util_act = $util; 
+        }
+
+
 
         $creditos = Creditos::find($creditos->id);
         $creditos->fecha = $request->input('fecha');
         $creditos->capital = $request->input('capital');
         $creditos->interes = $request->input('interes');
+        $creditos->int_actual = $utilidad;
         $creditos->total = $totalglobal;
         $creditos->cuotas = $request->input('cuotas');
         $creditos->plazo = $request->input('plazo');
         $creditos->fre_pago = $request->input('fre_pago');
-        $creditos->cap_actual = $request->input('capital');
-        $creditos->int_actual = $utilidad;
-        $creditos->tot_actual = $totalglobal;
+        $creditos->cap_actual = $capitalb;
+        $creditos->utilidad_act = $util_act;
+        $creditos->tot_actual = $totaltt;
         $creditos->cuo_actual = $request->input('cuotas');
         $creditos->clientes_id = $request->input('clientes_id');
         $creditos->save();

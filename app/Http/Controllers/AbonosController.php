@@ -80,18 +80,18 @@ class AbonosController extends Controller
         // Capital Actual utilidad_act
         $capitala = Creditos::where('id', '=', $id)->value('capital');
 
-        $capactual = $sumaabonos-$capitala;
+        $capactual = $capitala-$sumaabonos;
 
         $capitalb = 0;
         $totalabonos = $sumaabonos; 
 
-        if ($totalabonos<=$capitala)
+        if ($capactual>0)
          {
-            $capitalb = $totalabonos;
+            $capitalb = $capactual;
          }
-         elseif($totalabonos>$capitala)
+         elseif($capactual<=0)
          {
-            $capitalb = $capitala; 
+            $capitalb = 0; 
           }
 
         // Utilidad Actual utilidad_act
@@ -191,24 +191,28 @@ class AbonosController extends Controller
 
         $capi_tal = Creditos::where('id', '=', $id)->value('capital');
         $capi = ($sum_abonosa-$abonoactual)+$request->cuota;
-        $sumanueva = $capi;
+        $sumanueva = $capi_tal-$capi;
+
+        $totas = $capi;
 
     
       
         $cap = 0;
 
-        if ($sumanueva<=$capi_tal)
+        if ($sumanueva>0)
          {
             $cap = $sumanueva;
          }
-         elseif($sumanueva>$capi_tal)
+         elseif($sumanueva<=0)
          {
-            $cap = $capi_tal; 
+            $cap = 0; 
           }
 
 
+
+
         //actualizar campo sum_abonos
-        $sumat = $sumanueva;
+        $sumat = $totas;
 
 
          // Utilidad Actual utilidad_act
@@ -230,7 +234,7 @@ class AbonosController extends Controller
 
          $tot_actual = Creditos::where('id', '=', $id)->value('total');
 
-         $tota = $tot_actual-$sumanueva;
+         $tota = $tot_actual-$totas;
  
          $debe_act = 0; 
  
@@ -273,21 +277,25 @@ class AbonosController extends Controller
         $id = $abonos->creditos_id;
       
         //eliminar valor de cap_actual
-        $capilimina = Creditos::where('id', '=', $id)->value('cap_actual');
+        $capilimina = Creditos::where('id', '=', $id)->value('capital');
         $cuotaelimina = $abonos->cuota;
 
         $sumaabonos = Abonos::where('creditos_id', '=', $id)->sum('cuota');
         $nuevocuotas = $sumaabonos-$cuotaelimina; 
+        $sumares = $capilimina-$nuevocuotas;
+
+
         $capitalc = 0;
 
-        if ($nuevocuotas<=$capilimina)
+        if ($sumares>0)
          {
-            $capitalc = $nuevocuotas;
+            $capitalc = $sumares;
          }
-         elseif($nuevocuotas>$capilimina)
+         elseif($sumares<=0)
          {
-            $capitalc = $capilimina; 
+            $capitalc = 0; 
           }
+
 
         //actualizar campo sum_abonos
         $sumabone = $nuevocuotas;
