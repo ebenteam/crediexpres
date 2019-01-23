@@ -27,6 +27,7 @@ class AbonosRequest extends FormRequest
 
             'cuota'=> 'required|numeric|Min:1',
             'tipo_cuota'=> 'required'
+           
 
         ];
     }

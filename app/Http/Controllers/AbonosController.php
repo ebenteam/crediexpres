@@ -67,6 +67,8 @@ class AbonosController extends Controller
      */
     public function store(AbonosRequest $request,Creditos $creditos )
     {
+        
+      
         $abonos = Abonos::create($request->all());
 
         // Lo que debe el Cliente tot_actual
@@ -74,16 +76,19 @@ class AbonosController extends Controller
         //obtengo el id del credito por medio del arrego en el request
         $id = $request->creditos_id;
 
-        // Suma de Todos los abonos sum_abonos
-        $sumaabonos = Abonos::where('creditos_id', '=', $id)->sum('cuota');
+        // Suma de Todos los abonos normales 
+        $sumnormal = Abonos::where('creditos_id', '=', $id)->where('tipo_cuota', '=', 1)->sum('cuota');
+        // Suma de Todos los abonos interes
+        $suminter = Abonos::where('creditos_id', '=', $id)->where('tipo_cuota', '=', 2)->sum('cuota');
+
 
         // Capital Actual utilidad_act
         $capitala = Creditos::where('id', '=', $id)->value('capital');
 
-        $capactual = $capitala-$sumaabonos;
+        $capactual = $capitala-$sumnormal;
 
         $capitalb = 0;
-        $totalabonos = $sumaabonos; 
+        $totalabonos = $sumnormal; 
 
         if ($capactual>0)
          {
@@ -96,7 +101,7 @@ class AbonosController extends Controller
 
         // Utilidad Actual utilidad_act
 
-        $util = $sumaabonos-$capitala;
+        $util = $sumnormal-$capitala;
 
         $util_act = 0; 
 
@@ -109,12 +114,24 @@ class AbonosController extends Controller
             $util_act = $util; 
           }
 
+          // sumo a utilidad de forma directa abonos a utilidad 
+
+          $utilabo = $util_act + $suminter;
+
+           // sumo a total sum_abonos
+
+           //suma total normal y interes
+
+           $sumnyi = $sumnormal + $suminter;
+
+
+
         
 
         // Total debe:  tot_actual
         $tot_actual = Creditos::where('id', '=', $id)->value('total');
 
-        $tota = $tot_actual-$sumaabonos;
+        $tota = $tot_actual-$sumnormal;
 
         $debe_act = 0; 
 
@@ -127,14 +144,18 @@ class AbonosController extends Controller
             $debe_act = $tota; 
           }
 
+          //resto a tot_actual las cuotas de solo interes (pendiente)
+
+          $totactual = $debe_act - $suminter;
+
 
 
         //actualizo el valor en la tabla creditos 
         $creditoactual = Creditos::find($id);
-        $creditoactual->sum_abonos = $sumaabonos;
+        $creditoactual->sum_abonos = $sumnyi;
         $creditoactual->cap_actual = $capitalb;
-        $creditoactual->utilidad_act = $util_act;
-        $creditoactual->tot_actual = $debe_act;
+        $creditoactual->utilidad_act = $utilabo;
+        $creditoactual->tot_actual = $totactual;
         $creditoactual->save();
 
         
@@ -176,94 +197,107 @@ class AbonosController extends Controller
      */
     public function update(AbonosRequest $request, Abonos $abonos,Creditos $creditos)
     {
-        //obtengo el id del credito por medio del arreglo en el request
-        $id = $request->creditos_id;
-        $idabono = $abonos->id;
-        //obtengo el valor de tot_actual de la tabla creditos con el id del credito
-        $sum_abonosa = Creditos::where('id', '=', $id)->value('sum_abonos');
-        $abonoactual = Abonos::where('id', '=', $idabono)->value('cuota'); 
-        //realizo la suma entre el tot_actual y el abono que se elimina 
-        $actualtone = ($sum_abonosa+$abonoactual)-$request->cuota;
-        $actualttwo = $actualtone;
+      $id = $request->creditos_id;
+      $idabono = $abonos->id;
+
+      $eliminar = Abonos::where('id', '=', $idabono)->delete(); 
+
+      $abonos = Abonos::create($request->all());
+
+      // Lo que debe el Cliente tot_actual
+
+      //obtengo el id del credito por medio del arrego en el request
+      $id = $request->creditos_id;
+
+      // Suma de Todos los abonos normales 
+      $sumnormal = Abonos::where('creditos_id', '=', $id)->where('tipo_cuota', '=', 1)->sum('cuota');
+      // Suma de Todos los abonos interes
+      $suminter = Abonos::where('creditos_id', '=', $id)->where('tipo_cuota', '=', 2)->sum('cuota');
 
 
-        // Actualizar cap_actual
+      // Capital Actual utilidad_act
+      $capitala = Creditos::where('id', '=', $id)->value('capital');
 
-        $capi_tal = Creditos::where('id', '=', $id)->value('capital');
-        $capi = ($sum_abonosa-$abonoactual)+$request->cuota;
-        $sumanueva = $capi_tal-$capi;
+      $capactual = $capitala-$sumnormal;
 
-        $totas = $capi;
+      $capitalb = 0;
+      $totalabonos = $sumnormal; 
 
-    
+      if ($capactual>0)
+       {
+          $capitalb = $capactual;
+       }
+       elseif($capactual<=0)
+       {
+          $capitalb = 0; 
+        }
+
+      // Utilidad Actual utilidad_act
+
+      $util = $sumnormal-$capitala;
+
+      $util_act = 0; 
+
+      if ($util<=0)
+       {
+          $util_act = 0;
+       }
+       elseif($util>0)
+       {
+          $util_act = $util; 
+        }
+
+        // sumo a utilidad de forma directa abonos a utilidad 
+
+        $utilabo = $util_act + $suminter;
+
+         // sumo a total sum_abonos
+
+         //suma total normal y interes
+
+         $sumnyi = $sumnormal + $suminter;
+
+
+
       
-        $cap = 0;
 
-        if ($sumanueva>0)
-         {
-            $cap = $sumanueva;
-         }
-         elseif($sumanueva<=0)
-         {
-            $cap = 0; 
-          }
+      // Total debe:  tot_actual
+      $tot_actual = Creditos::where('id', '=', $id)->value('total');
+
+      $tota = $tot_actual-$sumnormal;
+
+      $debe_act = 0; 
+
+      if ($tota<0)
+       {
+          $debe_act = 0;
+       }
+       elseif($tota>=0)
+       {
+          $debe_act = $tota; 
+        }
+
+        //resto a tot_actual las cuotas de solo interes (pendiente)
+
+        $totactual = $debe_act - $suminter;
 
 
 
+      //actualizo el valor en la tabla creditos 
+      $creditoactual = Creditos::find($id);
+      $creditoactual->sum_abonos = $sumnyi;
+      $creditoactual->cap_actual = $capitalb;
+      $creditoactual->utilidad_act = $utilabo;
+      $creditoactual->tot_actual = $totactual;
+      $creditoactual->save();
 
-        //actualizar campo sum_abonos
-        $sumat = $totas;
+      
+      return redirect()->route('abonos.index', ['id' => $id])
+      ->with('info', 'Abono Modificado con éxito');
 
+      
 
-         // Utilidad Actual utilidad_act
-
-         $util = $sumat-$capi_tal;
-
-         $util_act = 0; 
- 
-         if ($util<=0)
-          {
-             $util_act = 0;
-          }
-          elseif($util>0)
-          {
-             $util_act = $util; 
-           }
-
-         // Total debe:  tot_actual
-
-         $tot_actual = Creditos::where('id', '=', $id)->value('total');
-
-         $tota = $tot_actual-$totas;
- 
-         $debe_act = 0; 
- 
-         if ($tota<0)
-          {
-             $debe_act = 0;
-          }
-          elseif($tota>=0)
-          {
-             $debe_act = $tota; 
-           }
- 
-    
-       
-
-        //actualizo el valor en la tabla creditos 
-        $creditoactual = Creditos::find($id);
-        $creditoactual->tot_actual = $debe_act;
-        $creditoactual->utilidad_act = $util_act;
-        $creditoactual->cap_actual = $cap;
-        $creditoactual->sum_abonos = $sumat;
-        $creditoactual->save();
-
-        $abonos->update($request->all());
-
-        
-       return redirect()->route('abonos.index',['id' => $id])
-       ->with('info', 'Abono Modificado con éxito');
-    }
+   }
 
     /**
      * Remove the specified resource from storage.
@@ -273,59 +307,69 @@ class AbonosController extends Controller
      */
     public function destroy(Abonos $abonos,Creditos $creditos )
     {
-        //obtengo el id del credito por medio del arrego en el request
+        $abonos->delete();
+
         $id = $abonos->creditos_id;
-      
-        //eliminar valor de cap_actual
-        $capilimina = Creditos::where('id', '=', $id)->value('capital');
-        $cuotaelimina = $abonos->cuota;
 
-        $sumaabonos = Abonos::where('creditos_id', '=', $id)->sum('cuota');
-        $nuevocuotas = $sumaabonos-$cuotaelimina; 
-        $sumares = $capilimina-$nuevocuotas;
-
-
-        $capitalc = 0;
-
-        if ($sumares>0)
-         {
-            $capitalc = $sumares;
-         }
-         elseif($sumares<=0)
-         {
-            $capitalc = 0; 
-          }
-
-
-        //actualizar campo sum_abonos
-        $sumabone = $nuevocuotas;
-
-
-          // Utilidad Actual utilidad_act
-
-          $ca= Creditos::where('id', '=', $id)->value('capital');
-
-          $util = $sumabone-$ca;
-
-          $util_act = 0; 
+        // Suma de Todos los abonos normales 
+        $sumnormal = Abonos::where('creditos_id', '=', $id)->where('tipo_cuota', '=', 1)->sum('cuota');
+        // Suma de Todos los abonos interes
+        $suminter = Abonos::where('creditos_id', '=', $id)->where('tipo_cuota', '=', 2)->sum('cuota');
   
-          if ($util<=0)
-           {
-              $util_act = 0;
-           }
-           elseif($util>0)
-           {
-              $util_act = $util; 
-            }
-
-          
-            // Total debe:  tot_actual
+  
+        // Capital Actual utilidad_act
+        $capitala = Creditos::where('id', '=', $id)->value('capital');
+  
+        $capactual = $capitala-$sumnormal;
+  
+        $capitalb = 0;
+        $totalabonos = $sumnormal; 
+  
+        if ($capactual>0)
+         {
+            $capitalb = $capactual;
+         }
+         elseif($capactual<=0)
+         {
+            $capitalb = 0; 
+          }
+  
+        // Utilidad Actual utilidad_act
+  
+        $util = $sumnormal-$capitala;
+  
+        $util_act = 0; 
+  
+        if ($util<=0)
+         {
+            $util_act = 0;
+         }
+         elseif($util>0)
+         {
+            $util_act = $util; 
+          }
+  
+          // sumo a utilidad de forma directa abonos a utilidad 
+  
+          $utilabo = $util_act + $suminter;
+  
+           // sumo a total sum_abonos
+  
+           //suma total normal y interes
+  
+           $sumnyi = $sumnormal + $suminter;
+  
+  
+  
+        
+  
+        // Total debe:  tot_actual
         $tot_actual = Creditos::where('id', '=', $id)->value('total');
-
-        $tota = $tot_actual-$sumabone;
-
+  
+        $tota = $tot_actual-$sumnormal;
+  
         $debe_act = 0; 
-
+  
         if ($tota<0)
          {
             $debe_act = 0;
@@ -334,21 +378,27 @@ class AbonosController extends Controller
          {
             $debe_act = $tota; 
           }
-
-   
+  
+          //resto a tot_actual las cuotas de solo interes (pendiente)
+  
+          $totactual = $debe_act - $suminter;
+  
+  
+  
+        //actualizo el valor en la tabla creditos 
+        $creditoactual = Creditos::find($id);
+        $creditoactual->sum_abonos = $sumnyi;
+        $creditoactual->cap_actual = $capitalb;
+        $creditoactual->utilidad_act = $utilabo;
+        $creditoactual->tot_actual = $totactual;
+        $creditoactual->save();
+  
         
+        return redirect()->route('abonos.index', ['id' => $id])
+        ->with('info', 'Abono Eliminado con éxito');
 
-         //actualizo el valor en la tabla creditos 
-         $creditoactual = Creditos::find($id);
-         $creditoactual->tot_actual = $debe_act;
-         $creditoactual->cap_actual = $capitalc;
-         $creditoactual->utilidad_act = $util_act;
-         $creditoactual->sum_abonos = $sumabone;
-         $creditoactual->save();
-
-        $abonos->delete();
-        return back()->with('info','Abono con Eliminado Correctamente'); 
-    }
+      }
+        
 
 
 
