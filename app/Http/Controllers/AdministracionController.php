@@ -17,26 +17,27 @@ class AdministracionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function cuadredia()
+    public function cuadredia(Request $request)
     {
-
+        $newfecha = $request->fecha;
         $now = Carbon::now();
-        $formatfecha = $now->toDateString(); 
+        $formatfecha = $newfecha;
 
        // trae los abonos del dia 
         $abonos = DB::table('abonos')
         ->Join('creditos', 'creditos.id' , '=' ,'abonos.creditos_id')
         ->Join('clientes', 'clientes.id' , '=' ,'creditos.clientes_id')
-        ->select('abonos.fecha', 'abonos.cuota', 'abonos.usuario', 'creditos.total', 'creditos.sum_abonos', 'clientes.nombres','clientes.apellidos' )
-        ->where('abonos.fecha', '=', $formatfecha )
+        ->select('abonos.fecha', 'abonos.cuota', 'abonos.usuario', 'abonos.tipo_cuota', 'creditos.id','creditos.total', 'creditos.sum_abonos', 'clientes.nombres','clientes.apellidos' )
+        ->where('abonos.fecha', '=', $newfecha )
         ->get();
+
        
         //trae la suma de las cuotas del dia 
 
         $sumcuota = DB::table('abonos')
         ->Join('creditos', 'creditos.id' , '=' ,'abonos.creditos_id')
         ->select('abonos.fecha', 'abonos.cuota')
-        ->where('abonos.fecha', '=', $formatfecha )
+        ->where('abonos.fecha', '=', $newfecha )
         ->sum('abonos.cuota');
 
         // trae la suma de del total abonado en todos los creditos asociados a las cuotas
@@ -44,26 +45,28 @@ class AdministracionController extends Controller
         $sumtotcredi = DB::table('abonos')
         ->Join('creditos', 'creditos.id' , '=' ,'abonos.creditos_id')
         ->select('abonos.fecha','creditos.sum_abonos')
-        ->where('abonos.fecha', '=', $formatfecha )
+        ->where('abonos.fecha', '=', $newfecha )
         ->sum('creditos.sum_abonos');
 
-        //resta del total de los creditos con abonos del dia
-        
-        $resabonos = $sumtotcredi-$sumcuota;
+        //suma de intereses cuotas interes 
 
-        //sumatoria de los capitales de los creditos involucrados 
-
-        $sumtotcapital = DB::table('abonos')
+        $abonosinter = DB::table('abonos')
         ->Join('creditos', 'creditos.id' , '=' ,'abonos.creditos_id')
-        ->select('abonos.fecha','creditos.sum_abonos')
-        ->where('abonos.fecha', '=', $formatfecha )
-        ->sum('creditos.capital');
+        ->select('abonos.fecha', 'abonos.cuota')
+        ->where('abonos.tipo_cuota', '=', 2 )
+        ->where('abonos.fecha', '=', $newfecha )
+        ->sum('abonos.cuota');
 
-        //obtenemos el capital total de las cuotas del dia
 
-        $capitaldia = $sumtotcapital-$resabonos;
+        
+ 
 
-        return view('administracion.cuadredia', compact('abonos','formatfecha','sumcuota','resabonos'));
+        //variable para tipo de cuota 
+        $tipcuota= 0; 
+
+            
+
+        return view('administracion.cuadredia', compact('abonos','formatfecha','sumcuota','sumtotcredi','tipcuota','abonosinter'));
     }
 
 

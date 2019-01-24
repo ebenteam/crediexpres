@@ -13,9 +13,6 @@
       
       </h1> <br>
       
-
-
-     
     
     </section>
 
@@ -23,9 +20,6 @@
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-           
-          <a href=" " class="btn btn-primary btn-block margin-bottom">Fecha Anterior</a>
-         
           <div class="box box-solid">
             <div class="box-header with-border">
         
@@ -39,6 +33,8 @@
             
             <div class="box-body no-padding">
 
+            <form action="{{ route('administracion.cuadredia') }}" role="form-group">
+
               <ul class="nav nav-pills nav-stacked">
               <div class="form-group">
               <label>Fecha:</label>
@@ -48,11 +44,14 @@
               </div>
               <input type="text" class="form-control pull-right" id="datepicker" name="fecha" value="{{ $formatfecha }}"/>
               </div>
+              {{ Form::submit('Consultar', ['class' => 'btn btn-block btn-primary btn-sm']) }}
               <!-- /.input group -->
               </div>
+
+            </form>
               
-                <li><a href="#"><i class="fa fa-fw fa-money"></i>Capital<span class="pull-right badge bg-aqua">{{number_format($resabonos,0) }}</span></a></li>
-                <li><a href="#"><i class="fa fa-fw fa-line-chart"></i>Utilidad<span class="pull-right badge bg-green">3</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-money"></i>Capital<span class="pull-right badge bg-aqua">{{ $sumtotcredi }}</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-line-chart"></i>Utilidad<span class="pull-right badge bg-green">{{ number_format($abonosinter,0) }}</span></a></li>
                 <li class="active"><a href="#"><i class="fa fa-fw fa-rocket"></i>Total Dia:<span class="pull-right badge bg-blue">{{ number_format($sumcuota,0) }}</span></a></li>
                 
               </ul>
@@ -87,6 +86,7 @@
 
                   <th>Fecha</th>
                   <th>Cuota</th>
+                  <th>Tipo Cuota</th>
                   <th>Cliente</th>
                   <th>Cobrador</th>
                   
@@ -96,10 +96,17 @@
                 </thead>
                 <tbody>
                 @foreach($abonos as $abono)
+                
+                @if ($abono->tipo_cuota == 1)
+                   <!-- {{  $tipcuota = "Normal" }} -->
+                @else ()
+                   <!-- {{ $tipcuota = "Interes" }} -->
+                @endif
               
                 <tr>
                   <td>{{ $abono->fecha }}</td>
                   <td>{{ number_format($abono->cuota,0) }}</td>
+                  <td>{{ $tipcuota }}</td>
                   <td>{{ $abono->nombres }} {{ $abono->apellidos }}</td>
                   <td>{{ $abono->usuario}}</td>
                   

@@ -37,12 +37,11 @@ class AbonosController extends Controller
         //valor cuota 
         $valorcuota = $creditos->total/$creditos->cuotas;
 
-
-
+        //variable para poner nombre de tipo abono
+        $tipcuota= 0; 
           
-
       
-        return view('abonos.index', compact('abonos','creditos','clientes','sumacuotas','valorcuota'));
+        return view('abonos.index', compact('abonos','creditos','clientes','sumacuotas','valorcuota','tipcuota'));
 
     }
 

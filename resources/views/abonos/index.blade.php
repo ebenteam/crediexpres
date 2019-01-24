@@ -112,11 +112,17 @@
                 </thead>
                 <tbody>
                 @foreach($abonos as $abono)
+
+                @if ($abono->tipo_cuota == 1)
+                   <!-- {{  $tipcuota = "Normal" }} -->
+                @else ()
+                   <!-- {{ $tipcuota = "Interes" }} -->
+                @endif
               
                 <tr>
                   <td>{{ $abono->fecha }}</td>
                   <td>{{ number_format($abono->cuota,0) }}</td>
-                  <td>{{ ($abono->tipo_cuota) }}</td>
+                  <td>{{ $tipcuota }}</td>
                  
 
                   <td>
