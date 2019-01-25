@@ -177,14 +177,14 @@
 <ul class="sidebar-menu" data-widget="tree">
   <li class="header">Menu</li>
   <!-- Optionally, you can add icons to the links -->
-
+  
   @can ('creditos.index')
-  <li class="{{ request()->is('creditos') ? 'active' : '' }}"><a href="{{ route('creditos.index') }}"><i class="fa fa-user"></i> <span>Creditos y Abonos</span></a></li>
+  <li class="{{ request()->is('creditos') ? 'active' : '' }}"><a href="{{ route('creditos.index') }}"><i class="fa fa-fw fa-cogs"></i> <span>Creditos y Abonos</span></a></li>
   @endcan
 
   <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Creditos</span>
+            <i class="fa fa-fw fa-line-chart"></i> <span>Creditos</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -212,7 +212,7 @@
 
   <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Clientes</span>
+            <i class="fa fa-user"></i> <span>Clientes</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -241,7 +241,7 @@
  
   <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Administrador</span>
+            <i class="fa fa-fw fa-area-chart"></i> <span>Administrador</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

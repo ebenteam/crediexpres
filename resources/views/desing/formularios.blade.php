@@ -190,12 +190,94 @@
 <ul class="sidebar-menu" data-widget="tree">
   <li class="header">Menu</li>
   <!-- Optionally, you can add icons to the links -->
-
-  @can ('clientes.index')
-  <li class="{{ request()->is('clientes') ? 'active' : '' }}"><a href="{{ route('clientes.index') }}"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
+  
+  @can ('creditos.index')
+  <li class="{{ request()->is('creditos') ? 'active' : '' }}"><a href="{{ route('creditos.index') }}"><i class="fa fa-fw fa-cogs"></i> <span>Creditos y Abonos</span></a></li>
   @endcan
-</ul>
 
+  <li class="treeview">
+          <a href="#">
+            <i class="fa fa-fw fa-line-chart"></i> <span>Creditos</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="display: none;">
+
+          @can ('creditos.index')
+          <li><a href="{{ route('creditos.index') }}"><i class="fa fa-circle-o"></i>Creditos y Abonos</a></li>
+          @endcan
+          
+           @can ('creditos.crear')
+            <li><a href="{{ route('creditos.crear') }}"><i class="fa fa-circle-o"></i>Crear Creditos</a></li>
+            @endcan
+           
+            @can ('creditos.modificar')
+            <li><a href="{{ route('creditos.modificar') }}"><i class="fa fa-circle-o"></i>Modificar Creditos</a></li>
+            @endcan
+           
+            @can ('creditos.eliminar')
+            <li><a href="{{ route('creditos.eliminar') }}"><i class="fa fa-circle-o"></i>Eliminar Creditos</a></li>
+            @endcan
+  
+          </ul>
+        </li>
+
+  <li class="treeview">
+          <a href="#">
+            <i class="fa fa-user"></i> <span>Clientes</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="display: none;">
+
+            @can ('clientes.ver')
+            <li><a href="{{ route('clientes.ver') }}"><i class="fa fa-circle-o"></i>Detalle Clientes</a></li>
+            @endcan
+
+            @can ('clientes.create')
+            <li><a href="{{ route('clientes.create') }}"><i class="fa fa-circle-o"></i>Crear Cliente</a></li>
+            @endcan
+
+            @can ('clientes.modificar')
+            <li><a href="{{ route('clientes.modificar') }}"><i class="fa fa-circle-o"></i>Modificar Clientes</a></li>
+            @endcan
+
+            @can ('clientes.eliminar')
+            <li><a href="{{ route('clientes.eliminar') }}"><i class="fa fa-circle-o"></i>Eliminar Clientes</a></li>
+            @endcan
+  
+          </ul>
+        </li>
+
+ 
+  <li class="treeview">
+          <a href="#">
+            <i class="fa fa-fw fa-area-chart"></i> <span>Administrador</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="display: none;">
+
+            @can ('administracion.cuadredia')
+            <li><a href="{{ route('administracion.cuadredia') }}"><i class="fa fa-circle-o"></i> Cuadre Dia</a></li>
+            @endcan
+            @can ('administracion.cuentatotal')
+            <li><a href="{{ route('administracion.cuentatotal') }}"><i class="fa fa-circle-o"></i> Cuenta Total</a></li>
+            @endcan
+            @can ('administracion.gastos')
+            <li><a href="{{ route('administracion.gastos') }}"><i class="fa fa-circle-o"></i> Gastos</a></li>
+            @endcan
+            @can ('administracion.listacobros')
+            <li><a href="{{ route('administracion.listacobros') }}"><i class="fa fa-circle-o"></i> Lista Cobros</a></li>
+            @endcan
+          </ul>
+        </li>
+
+</ul>
+<!-- /.sidebar-menu -->
 <!-- /.sidebar-menu -->
 </section>
       <!-- /.sidebar -->

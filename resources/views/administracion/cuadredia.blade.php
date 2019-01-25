@@ -50,9 +50,10 @@
 
             </form>
               
-                <li><a href="#"><i class="fa fa-fw fa-money"></i>Capital<span class="pull-right badge bg-aqua">{{ $sumtotcredi }}</span></a></li>
+                <li><a href="#"><i class="fa fa-fw fa-money"></i>Capital<span class="pull-right badge bg-aqua">{{ number_format($abonosnormal,0) }}</span></a></li>
                 <li><a href="#"><i class="fa fa-fw fa-line-chart"></i>Utilidad<span class="pull-right badge bg-green">{{ number_format($abonosinter,0) }}</span></a></li>
                 <li class="active"><a href="#"><i class="fa fa-fw fa-rocket"></i>Total Dia:<span class="pull-right badge bg-blue">{{ number_format($sumcuota,0) }}</span></a></li>
+    
                 
               </ul>
             
@@ -108,7 +109,7 @@
                   <td>{{ number_format($abono->cuota,0) }}</td>
                   <td>{{ $tipcuota }}</td>
                   <td>{{ $abono->nombres }} {{ $abono->apellidos }}</td>
-                  <td>{{ $abono->usuario}}</td>
+                  <td>{{ $abono->usuario }}</td>
                   
                  
 
